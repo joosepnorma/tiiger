@@ -1,5 +1,5 @@
-// Generated from /home/madis/git/tiiger/Tiigrikeel.g4 by ANTLR 4.x
-package parser;
+// Generated from /home/madis/git/tiiger/src/Tiigrikeel.g4 by ANTLR 4.x
+package gen.parser;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
