@@ -8,24 +8,22 @@ public class NavigationListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		switch(e.getActionCommand()){
-			case "harjuta":
-				System.out.println("harjuta");
-				MainGUI.replace("harjutus");
-				break;
-			case "mängi":
-				System.out.println("mängi");
-				MainGUI.replace("mang");
-				break;
-			case "tagasi":
-				System.out.println("tagasi");
-				MainGUI.replace("main");
-				break;
-			case "valju":
-				MainGUI.exit();
-			
-		
-		}
+        String s = e.getActionCommand();
+        if (s.equals("harjuta")) {
+            System.out.println("harjuta");
+            MainGUI.replace("harjutus");
+
+        } else if (s.equals("mängi")) {
+            System.out.println("mängi");
+            MainGUI.replace("mang");
+
+        } else if (s.equals("tagasi")) {
+            System.out.println("tagasi");
+            MainGUI.replace("main");
+
+        } else if (s.equals("valju")) {
+            MainGUI.exit();
+        }
 		
 	}
 
