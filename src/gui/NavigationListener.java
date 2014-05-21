@@ -13,8 +13,8 @@ public class NavigationListener implements ActionListener {
 				System.out.println("harjuta");
 				MainGUI.replace("harjutus");
 				break;
-			case "m�ngi":
-				System.out.println("m�ngi");
+			case "mängi":
+				System.out.println("mängi");
 				MainGUI.replace("mang");
 				break;
 			case "tagasi":

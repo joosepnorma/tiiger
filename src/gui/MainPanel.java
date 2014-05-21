@@ -37,14 +37,14 @@ public class MainPanel extends JPanel {
 		
 		JButton mangi = new JButton();
 		mangi.setPreferredSize(new Dimension(200,100));
-		mangi.setText("M�ngi");
+		mangi.setText("Mängi");
 		mangi.setFont(newButtonFont);
-		mangi.setActionCommand("m�ngi");
+		mangi.setActionCommand("mängi");
 		mangi.addActionListener((ActionListener)MainGUI.navlistener);
 				
 		JButton valju = new JButton();
 		valju.setPreferredSize(new Dimension(200,100));
-		valju.setText("V�lju");
+		valju.setText("Välju");
 		valju.setFont(newButtonFont);
 		valju.setActionCommand("valju");
 		valju.addActionListener((ActionListener)MainGUI.navlistener);
