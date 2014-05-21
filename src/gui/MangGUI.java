@@ -1,3 +1,5 @@
+package gui;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -41,7 +43,7 @@ public class MangGUI extends JPanel {
 		problemTextPane.setEditable(false);
 		problemTextPane.setMargin(new Insets(10,10,10,10));
 		problemTextPane.setPreferredSize(new Dimension(700, 400));
-		problemTextPane.setText("Ülesanded tulevad siia");
+		problemTextPane.setText("ï¿½lesanded tulevad siia");
 		
 		JPanel outputAndProblemPane = new JPanel();
 		outputAndProblemPane.add(outputPane, BorderLayout.WEST);

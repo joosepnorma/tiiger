@@ -1,3 +1,5 @@
+package gui;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,8 +13,8 @@ public class NavigationListener implements ActionListener {
 				System.out.println("harjuta");
 				MainGUI.replace("harjutus");
 				break;
-			case "mängi":
-				System.out.println("mängi");
+			case "mï¿½ngi":
+				System.out.println("mï¿½ngi");
 				MainGUI.replace("mang");
 				break;
 			case "tagasi":
