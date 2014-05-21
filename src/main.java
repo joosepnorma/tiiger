@@ -7,9 +7,6 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 import parser.TiigrikeelLexer;
 import parser.TiigrikeelParser;
 
-/**
- * Created by madis on 21.05.14.
- */
 public class main {
     public static void main(String[] args) {
         String input = "x=5";
