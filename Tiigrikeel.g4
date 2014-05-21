@@ -1,11 +1,11 @@
 grammar Tiigrikeel;
 
 programm
-    :   lauseteJada
+    :   lauseteJada ('\n'+ lauseteJada)* '\n'*
     ;
 
 lauseteJada
-    :   lause (',' lause)*
+    :   lause ('\n' lause)*
     ;
 
 lause
@@ -18,11 +18,17 @@ lause
     ;
 
 kuiLause
-    :   'kui' '(' lausearvutus ')' lauseteJada
+    :   'kui' '(' lausearvutus ')' ':' '\n' lauseteJada
+    |   'kui' '(' lausearvutus ')' ':' lause
+    |   'kui' lausearvutus ':' '\n' lauseteJada
+    |   'kui' lausearvutus ':' lause
     ;
 
 kuniLause
-    :   'kuni' '(' lausearvutus ')' lauseteJada
+    :   'kuni' '(' lausearvutus ')' ':' '\n' lauseteJada
+    |   'kuni' '(' lausearvutus ')' ':' lause
+    |   'kuni' lausearvutus ':' '\n' lauseteJada
+    |   'kuni' lausearvutus ':' lause
     ;
 
 omistamine
@@ -69,6 +75,7 @@ tehe0
     |   Täisarv
     |   Komaga
     |   Sõne
+    |   Tõeväärtus  //ainult väärtuse omistamise jaoks
     ;
 
 lausearvutus
@@ -120,4 +127,12 @@ Sõne
 Tõeväärtus
     :   'jah'
     |   'ei'
+    ;
+
+Kommentaar
+    :   '/*' .*? '*/' -> skip
+    ;
+
+Whitespace
+    :   [ \t] -> skip
     ;
