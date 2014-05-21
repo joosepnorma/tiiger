@@ -18,16 +18,16 @@ lause
     ;
 
 kuiLause
-    :   'kui' '(' lausearvutus ')' ':' '\n' lauseteJada
+    :   'kui' '(' lausearvutus ')' ':' '\n' lauseteJada '\n'?
     |   'kui' '(' lausearvutus ')' ':' lause
-    |   'kui' lausearvutus ':' '\n' lauseteJada
+    |   'kui' lausearvutus ':' '\n' lauseteJada '\n'?
     |   'kui' lausearvutus ':' lause
     ;
 
 kuniLause
-    :   'kuni' '(' lausearvutus ')' ':' '\n' lauseteJada
+    :   'kuni' '(' lausearvutus ')' ':' '\n' lauseteJada '\n'?
     |   'kuni' '(' lausearvutus ')' ':' lause
-    |   'kuni' lausearvutus ':' '\n' lauseteJada
+    |   'kuni' lausearvutus ':' '\n' lauseteJada '\n'?
     |   'kuni' lausearvutus ':' lause
     ;
 
@@ -36,12 +36,12 @@ omistamine
     ;
 
 uusFunktsioon
-    :   'tegevus' MuutujaNimi '(' (MuutujaNimi (',' MuutujaNimi)*)? ')' ':' lauseteJada
+    :   'tegevus' MuutujaNimi '(' (MuutujaNimi (',' MuutujaNimi)*)? ')' ':' '\n' lauseteJada
     ;
 
 avaldis
-    :   tehe
-    |   lausearvutus
+    :   lausearvutus
+    |   tehe
     ;
 
 tehe
@@ -75,7 +75,6 @@ tehe0
     |   Täisarv
     |   Komaga
     |   Sõne
-    |   Tõeväärtus  //ainult väärtuse omistamise jaoks
     ;
 
 lausearvutus
@@ -108,6 +107,11 @@ lausearvutus0
     :   MuutujaNimi
     ;
 
+Tõeväärtus
+    :   'jah'
+    |   'ei'
+    ;
+
 MuutujaNimi
     :   [a-zA-Z][a-zA-Z0-9_]*
     ;
@@ -122,11 +126,6 @@ Komaga
 
 Sõne
     :   '"' ~["\n\r]* '"'
-    ;
-
-Tõeväärtus
-    :   'jah'
-    |   'ei'
     ;
 
 Kommentaar

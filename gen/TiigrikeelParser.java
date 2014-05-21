@@ -17,13 +17,13 @@ public class TiigrikeelParser extends Parser {
 		T__25=1, T__24=2, T__23=3, T__22=4, T__21=5, T__20=6, T__19=7, T__18=8, 
 		T__17=9, T__16=10, T__15=11, T__14=12, T__13=13, T__12=14, T__11=15, T__10=16, 
 		T__9=17, T__8=18, T__7=19, T__6=20, T__5=21, T__4=22, T__3=23, T__2=24, 
-		T__1=25, T__0=26, MuutujaNimi=27, Täisarv=28, Komaga=29, Sõne=30, Tõeväärtus=31, 
-		Kommentaar=32, Whitespace=33;
+		T__1=25, T__0=26, Tõeväärtus=27, MuutujaNimi=28, Täisarv=29, Komaga=30, 
+		Sõne=31, Kommentaar=32, Whitespace=33;
 	public static final String[] tokenNames = {
 		"<INVALID>", "']'", "'\n'", "','", "'['", "'*'", "'-'", "'('", "':'", 
 		"'<'", "'!='", "'<='", "'või'", "'{'", "'}'", "')'", "'+'", "'kui'", "'='", 
-		"'>'", "'/'", "'=='", "'kuni'", "'>='", "'!'", "'tegevus'", "'ja'", "MuutujaNimi", 
-		"Täisarv", "Komaga", "Sõne", "Tõeväärtus", "Kommentaar", "Whitespace"
+		"'>'", "'/'", "'=='", "'kuni'", "'>='", "'!'", "'tegevus'", "'ja'", "Tõeväärtus", 
+		"MuutujaNimi", "Täisarv", "Komaga", "Sõne", "Kommentaar", "Whitespace"
 	};
 	public static final int
 		RULE_programm = 0, RULE_lauseteJada = 1, RULE_lause = 2, RULE_kuiLause = 3, 
@@ -305,8 +305,8 @@ public class TiigrikeelParser extends Parser {
 		KuiLauseContext _localctx = new KuiLauseContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_kuiLause);
 		try {
-			setState(103);
-			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
+			setState(107);
+			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
@@ -317,36 +317,52 @@ public class TiigrikeelParser extends Parser {
 				setState(81); match(T__18);
 				setState(82); match(T__24);
 				setState(83); lauseteJada();
+				setState(85);
+				switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
+				case 1:
+					{
+					setState(84); match(T__24);
+					}
+					break;
+				}
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(85); match(T__9);
-				setState(86); match(T__19);
-				setState(87); lausearvutus();
-				setState(88); match(T__11);
-				setState(89); match(T__18);
-				setState(90); lause();
+				setState(87); match(T__9);
+				setState(88); match(T__19);
+				setState(89); lausearvutus();
+				setState(90); match(T__11);
+				setState(91); match(T__18);
+				setState(92); lause();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(92); match(T__9);
-				setState(93); lausearvutus();
-				setState(94); match(T__18);
-				setState(95); match(T__24);
-				setState(96); lauseteJada();
+				setState(94); match(T__9);
+				setState(95); lausearvutus();
+				setState(96); match(T__18);
+				setState(97); match(T__24);
+				setState(98); lauseteJada();
+				setState(100);
+				switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
+				case 1:
+					{
+					setState(99); match(T__24);
+					}
+					break;
+				}
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(98); match(T__9);
-				setState(99); lausearvutus();
-				setState(100); match(T__18);
-				setState(101); lause();
+				setState(102); match(T__9);
+				setState(103); lausearvutus();
+				setState(104); match(T__18);
+				setState(105); lause();
 				}
 				break;
 			}
@@ -387,48 +403,64 @@ public class TiigrikeelParser extends Parser {
 		KuniLauseContext _localctx = new KuniLauseContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_kuniLause);
 		try {
-			setState(131);
-			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
+			setState(139);
+			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(105); match(T__4);
-				setState(106); match(T__19);
-				setState(107); lausearvutus();
-				setState(108); match(T__11);
-				setState(109); match(T__18);
-				setState(110); match(T__24);
-				setState(111); lauseteJada();
+				setState(109); match(T__4);
+				setState(110); match(T__19);
+				setState(111); lausearvutus();
+				setState(112); match(T__11);
+				setState(113); match(T__18);
+				setState(114); match(T__24);
+				setState(115); lauseteJada();
+				setState(117);
+				switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
+				case 1:
+					{
+					setState(116); match(T__24);
+					}
+					break;
+				}
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(113); match(T__4);
-				setState(114); match(T__19);
-				setState(115); lausearvutus();
-				setState(116); match(T__11);
-				setState(117); match(T__18);
-				setState(118); lause();
+				setState(119); match(T__4);
+				setState(120); match(T__19);
+				setState(121); lausearvutus();
+				setState(122); match(T__11);
+				setState(123); match(T__18);
+				setState(124); lause();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(120); match(T__4);
-				setState(121); lausearvutus();
-				setState(122); match(T__18);
-				setState(123); match(T__24);
-				setState(124); lauseteJada();
+				setState(126); match(T__4);
+				setState(127); lausearvutus();
+				setState(128); match(T__18);
+				setState(129); match(T__24);
+				setState(130); lauseteJada();
+				setState(132);
+				switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
+				case 1:
+					{
+					setState(131); match(T__24);
+					}
+					break;
+				}
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(126); match(T__4);
-				setState(127); lausearvutus();
-				setState(128); match(T__18);
-				setState(129); lause();
+				setState(134); match(T__4);
+				setState(135); lausearvutus();
+				setState(136); match(T__18);
+				setState(137); lause();
 				}
 				break;
 			}
@@ -466,9 +498,9 @@ public class TiigrikeelParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(133); match(MuutujaNimi);
-			setState(134); match(T__8);
-			setState(135); avaldis();
+			setState(141); match(MuutujaNimi);
+			setState(142); match(T__8);
+			setState(143); avaldis();
 			}
 		}
 		catch (RecognitionException re) {
@@ -508,34 +540,35 @@ public class TiigrikeelParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(137); match(T__1);
-			setState(138); match(MuutujaNimi);
-			setState(139); match(T__19);
-			setState(148);
+			setState(145); match(T__1);
+			setState(146); match(MuutujaNimi);
+			setState(147); match(T__19);
+			setState(156);
 			_la = _input.LA(1);
 			if (_la==MuutujaNimi) {
 				{
-				setState(140); match(MuutujaNimi);
-				setState(145);
+				setState(148); match(MuutujaNimi);
+				setState(153);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__23) {
 					{
 					{
-					setState(141); match(T__23);
-					setState(142); match(MuutujaNimi);
+					setState(149); match(T__23);
+					setState(150); match(MuutujaNimi);
 					}
 					}
-					setState(147);
+					setState(155);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
 				}
 			}
 
-			setState(150); match(T__11);
-			setState(151); match(T__18);
-			setState(152); lauseteJada();
+			setState(158); match(T__11);
+			setState(159); match(T__18);
+			setState(160); match(T__24);
+			setState(161); lauseteJada();
 			}
 		}
 		catch (RecognitionException re) {
@@ -571,18 +604,18 @@ public class TiigrikeelParser extends Parser {
 		AvaldisContext _localctx = new AvaldisContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_avaldis);
 		try {
-			setState(156);
-			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
+			setState(165);
+			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(154); tehe();
+				setState(163); lausearvutus();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(155); lausearvutus();
+				setState(164); tehe();
 				}
 				break;
 			}
@@ -619,7 +652,7 @@ public class TiigrikeelParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(158); tehe4(0);
+			setState(167); tehe4(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -691,12 +724,12 @@ public class TiigrikeelParser extends Parser {
 			_ctx = _localctx;
 			_prevctx = _localctx;
 
-			setState(161); tehe3(0);
+			setState(170); tehe3(0);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(168);
+			setState(177);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,14,_ctx);
 			while ( _alt!=2 && _alt!=ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -705,21 +738,21 @@ public class TiigrikeelParser extends Parser {
 					{
 					_localctx = new LiitmineLahutamineContext(new Tehe4Context(_parentctx, _parentState));
 					pushNewRecursionContext(_localctx, _startState, RULE_tehe4);
-					setState(163);
+					setState(172);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(164);
+					setState(173);
 					_la = _input.LA(1);
 					if ( !(_la==T__20 || _la==T__10) ) {
 					_errHandler.recoverInline(this);
 					}
 					consume();
-					setState(165); tehe3(0);
+					setState(174); tehe3(0);
 					}
 					} 
 				}
-				setState(170);
+				setState(179);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,14,_ctx);
 			}
 			}
 		}
@@ -792,12 +825,12 @@ public class TiigrikeelParser extends Parser {
 			_ctx = _localctx;
 			_prevctx = _localctx;
 
-			setState(172); tehe2();
+			setState(181); tehe2();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(179);
+			setState(188);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,11,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,15,_ctx);
 			while ( _alt!=2 && _alt!=ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -806,21 +839,21 @@ public class TiigrikeelParser extends Parser {
 					{
 					_localctx = new KorrutamineJagamineContext(new Tehe3Context(_parentctx, _parentState));
 					pushNewRecursionContext(_localctx, _startState, RULE_tehe3);
-					setState(174);
+					setState(183);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(175);
+					setState(184);
 					_la = _input.LA(1);
 					if ( !(_la==T__21 || _la==T__6) ) {
 					_errHandler.recoverInline(this);
 					}
 					consume();
-					setState(176); tehe2();
+					setState(185); tehe2();
 					}
 					} 
 				}
-				setState(181);
+				setState(190);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,11,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,15,_ctx);
 			}
 			}
 		}
@@ -873,14 +906,14 @@ public class TiigrikeelParser extends Parser {
 		Tehe2Context _localctx = new Tehe2Context(_ctx, getState());
 		enterRule(_localctx, 22, RULE_tehe2);
 		try {
-			setState(185);
+			setState(194);
 			switch (_input.LA(1)) {
 			case T__20:
 				_localctx = new UnaarneMiinusContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(182); match(T__20);
-				setState(183); tehe2();
+				setState(191); match(T__20);
+				setState(192); tehe2();
 				}
 				break;
 			case T__19:
@@ -888,11 +921,10 @@ public class TiigrikeelParser extends Parser {
 			case Täisarv:
 			case Komaga:
 			case Sõne:
-			case Tõeväärtus:
 				_localctx = new TriviaalneTehe2Context(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(184); tehe1();
+				setState(193); tehe1();
 				}
 				break;
 			default:
@@ -976,63 +1008,63 @@ public class TiigrikeelParser extends Parser {
 		enterRule(_localctx, 24, RULE_tehe1);
 		int _la;
 		try {
-			setState(210);
-			switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
+			setState(219);
+			switch ( getInterpreter().adaptivePredict(_input,19,_ctx) ) {
 			case 1:
 				_localctx = new FunktsioonContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(187); match(MuutujaNimi);
-				setState(188); match(T__19);
-				setState(197);
+				setState(196); match(MuutujaNimi);
+				setState(197); match(T__19);
+				setState(206);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__20) | (1L << T__19) | (1L << T__2) | (1L << MuutujaNimi) | (1L << Täisarv) | (1L << Komaga) | (1L << Sõne) | (1L << Tõeväärtus))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__20) | (1L << T__19) | (1L << T__2) | (1L << Tõeväärtus) | (1L << MuutujaNimi) | (1L << Täisarv) | (1L << Komaga) | (1L << Sõne))) != 0)) {
 					{
-					setState(189); avaldis();
-					setState(194);
+					setState(198); avaldis();
+					setState(203);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 					while (_la==T__23) {
 						{
 						{
-						setState(190); match(T__23);
-						setState(191); avaldis();
+						setState(199); match(T__23);
+						setState(200); avaldis();
 						}
 						}
-						setState(196);
+						setState(205);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 					}
 					}
 				}
 
-				setState(199); match(T__11);
+				setState(208); match(T__11);
 				}
 				break;
 			case 2:
 				_localctx = new JärjendiFunktsioonContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(200); match(MuutujaNimi);
-				setState(201); match(T__22);
-				setState(202); tehe();
-				setState(203); match(T__25);
+				setState(209); match(MuutujaNimi);
+				setState(210); match(T__22);
+				setState(211); tehe();
+				setState(212); match(T__25);
 				}
 				break;
 			case 3:
 				_localctx = new SulustatudTeheContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(205); match(T__19);
-				setState(206); tehe();
-				setState(207); match(T__11);
+				setState(214); match(T__19);
+				setState(215); tehe();
+				setState(216); match(T__11);
 				}
 				break;
 			case 4:
 				_localctx = new TriviaalneTehe1Context(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(209); tehe0();
+				setState(218); tehe0();
 				}
 				break;
 			}
@@ -1052,7 +1084,6 @@ public class TiigrikeelParser extends Parser {
 		public TerminalNode Täisarv() { return getToken(TiigrikeelParser.Täisarv, 0); }
 		public TerminalNode MuutujaNimi() { return getToken(TiigrikeelParser.MuutujaNimi, 0); }
 		public TerminalNode Sõne() { return getToken(TiigrikeelParser.Sõne, 0); }
-		public TerminalNode Tõeväärtus() { return getToken(TiigrikeelParser.Tõeväärtus, 0); }
 		public TerminalNode Komaga() { return getToken(TiigrikeelParser.Komaga, 0); }
 		public Tehe0Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1072,9 +1103,9 @@ public class TiigrikeelParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(212);
+			setState(221);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << MuutujaNimi) | (1L << Täisarv) | (1L << Komaga) | (1L << Sõne) | (1L << Tõeväärtus))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << MuutujaNimi) | (1L << Täisarv) | (1L << Komaga) | (1L << Sõne))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			consume();
@@ -1112,7 +1143,7 @@ public class TiigrikeelParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(214); lausearvutus4(0);
+			setState(223); lausearvutus4(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1183,12 +1214,12 @@ public class TiigrikeelParser extends Parser {
 			_ctx = _localctx;
 			_prevctx = _localctx;
 
-			setState(217); lausearvutus3();
+			setState(226); lausearvutus3();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(224);
+			setState(233);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,16,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,20,_ctx);
 			while ( _alt!=2 && _alt!=ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -1197,16 +1228,16 @@ public class TiigrikeelParser extends Parser {
 					{
 					_localctx = new DisjunktsioonContext(new Lausearvutus4Context(_parentctx, _parentState));
 					pushNewRecursionContext(_localctx, _startState, RULE_lausearvutus4);
-					setState(219);
+					setState(228);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(220); match(T__14);
-					setState(221); lausearvutus3();
+					setState(229); match(T__14);
+					setState(230); lausearvutus3();
 					}
 					} 
 				}
-				setState(226);
+				setState(235);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,16,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,20,_ctx);
 			}
 			}
 		}
@@ -1262,22 +1293,22 @@ public class TiigrikeelParser extends Parser {
 		Lausearvutus3Context _localctx = new Lausearvutus3Context(_ctx, getState());
 		enterRule(_localctx, 32, RULE_lausearvutus3);
 		try {
-			setState(232);
-			switch ( getInterpreter().adaptivePredict(_input,17,_ctx) ) {
+			setState(241);
+			switch ( getInterpreter().adaptivePredict(_input,21,_ctx) ) {
 			case 1:
 				_localctx = new KonjunktsioonContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(227); lausearvutus2();
-				setState(228); match(T__0);
-				setState(229); lausearvutus2();
+				setState(236); lausearvutus2();
+				setState(237); match(T__0);
+				setState(238); lausearvutus2();
 				}
 				break;
 			case 2:
 				_localctx = new TriviaalneLausearvutus2Context(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(231); lausearvutus2();
+				setState(240); lausearvutus2();
 				}
 				break;
 			}
@@ -1351,37 +1382,37 @@ public class TiigrikeelParser extends Parser {
 		Lausearvutus2Context _localctx = new Lausearvutus2Context(_ctx, getState());
 		enterRule(_localctx, 34, RULE_lausearvutus2);
 		try {
-			setState(242);
-			switch ( getInterpreter().adaptivePredict(_input,18,_ctx) ) {
+			setState(251);
+			switch ( getInterpreter().adaptivePredict(_input,22,_ctx) ) {
 			case 1:
 				_localctx = new EitusContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(234); match(T__2);
-				setState(235); lausearvutus2();
+				setState(243); match(T__2);
+				setState(244); lausearvutus2();
 				}
 				break;
 			case 2:
 				_localctx = new SulustatudLausearvutusContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(236); match(T__19);
-				setState(237); lausearvutus();
-				setState(238); match(T__11);
+				setState(245); match(T__19);
+				setState(246); lausearvutus();
+				setState(247); match(T__11);
 				}
 				break;
 			case 3:
 				_localctx = new TõeväärtusContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(240); match(Tõeväärtus);
+				setState(249); match(Tõeväärtus);
 				}
 				break;
 			case 4:
 				_localctx = new TriviaalneLausearvutus1Context(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(241); lausearvutus1();
+				setState(250); lausearvutus1();
 				}
 				break;
 			}
@@ -1439,27 +1470,27 @@ public class TiigrikeelParser extends Parser {
 		enterRule(_localctx, 36, RULE_lausearvutus1);
 		int _la;
 		try {
-			setState(249);
-			switch ( getInterpreter().adaptivePredict(_input,19,_ctx) ) {
+			setState(258);
+			switch ( getInterpreter().adaptivePredict(_input,23,_ctx) ) {
 			case 1:
 				_localctx = new VõrdlusContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(244); tehe();
-				setState(245);
+				setState(253); tehe();
+				setState(254);
 				_la = _input.LA(1);
 				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__17) | (1L << T__16) | (1L << T__15) | (1L << T__7) | (1L << T__5) | (1L << T__3))) != 0)) ) {
 				_errHandler.recoverInline(this);
 				}
 				consume();
-				setState(246); tehe();
+				setState(255); tehe();
 				}
 				break;
 			case 2:
 				_localctx = new TriviaalneLausearvutus0Context(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(248); lausearvutus0();
+				setState(257); lausearvutus0();
 				}
 				break;
 			}
@@ -1494,7 +1525,7 @@ public class TiigrikeelParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(251); match(MuutujaNimi);
+			setState(260); match(MuutujaNimi);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1536,89 +1567,94 @@ public class TiigrikeelParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3#\u0100\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3#\u0109\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\3\2\3\2\6\2-\n\2\r\2\16\2.\3\2\7\2\62\n"+
 		"\2\f\2\16\2\65\13\2\3\2\7\28\n\2\f\2\16\2;\13\2\3\3\3\3\3\3\7\3@\n\3\f"+
 		"\3\16\3C\13\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4N\n\4\3\5\3\5\3\5"+
-		"\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3"+
-		"\5\3\5\3\5\3\5\3\5\3\5\5\5j\n\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3"+
-		"\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6"+
-		"\u0086\n\6\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b\7\b\u0092\n\b\f\b\16"+
-		"\b\u0095\13\b\5\b\u0097\n\b\3\b\3\b\3\b\3\b\3\t\3\t\5\t\u009f\n\t\3\n"+
-		"\3\n\3\13\3\13\3\13\3\13\3\13\3\13\7\13\u00a9\n\13\f\13\16\13\u00ac\13"+
-		"\13\3\f\3\f\3\f\3\f\3\f\3\f\7\f\u00b4\n\f\f\f\16\f\u00b7\13\f\3\r\3\r"+
-		"\3\r\5\r\u00bc\n\r\3\16\3\16\3\16\3\16\3\16\7\16\u00c3\n\16\f\16\16\16"+
-		"\u00c6\13\16\5\16\u00c8\n\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3"+
-		"\16\3\16\3\16\5\16\u00d5\n\16\3\17\3\17\3\20\3\20\3\21\3\21\3\21\3\21"+
-		"\3\21\3\21\7\21\u00e1\n\21\f\21\16\21\u00e4\13\21\3\22\3\22\3\22\3\22"+
-		"\3\22\5\22\u00eb\n\22\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\5\23\u00f5"+
-		"\n\23\3\24\3\24\3\24\3\24\3\24\5\24\u00fc\n\24\3\25\3\25\3\25\2\5\24\26"+
-		" \26\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(\2\6\4\2\b\b\22\22\4"+
-		"\2\7\7\26\26\3\2\35!\6\2\13\r\25\25\27\27\31\31\u010b\2*\3\2\2\2\4<\3"+
-		"\2\2\2\6M\3\2\2\2\bi\3\2\2\2\n\u0085\3\2\2\2\f\u0087\3\2\2\2\16\u008b"+
-		"\3\2\2\2\20\u009e\3\2\2\2\22\u00a0\3\2\2\2\24\u00a2\3\2\2\2\26\u00ad\3"+
-		"\2\2\2\30\u00bb\3\2\2\2\32\u00d4\3\2\2\2\34\u00d6\3\2\2\2\36\u00d8\3\2"+
-		"\2\2 \u00da\3\2\2\2\"\u00ea\3\2\2\2$\u00f4\3\2\2\2&\u00fb\3\2\2\2(\u00fd"+
-		"\3\2\2\2*\63\5\4\3\2+-\7\4\2\2,+\3\2\2\2-.\3\2\2\2.,\3\2\2\2./\3\2\2\2"+
-		"/\60\3\2\2\2\60\62\5\4\3\2\61,\3\2\2\2\62\65\3\2\2\2\63\61\3\2\2\2\63"+
-		"\64\3\2\2\2\649\3\2\2\2\65\63\3\2\2\2\668\7\4\2\2\67\66\3\2\2\28;\3\2"+
-		"\2\29\67\3\2\2\29:\3\2\2\2:\3\3\2\2\2;9\3\2\2\2<A\5\6\4\2=>\7\4\2\2>@"+
-		"\5\6\4\2?=\3\2\2\2@C\3\2\2\2A?\3\2\2\2AB\3\2\2\2B\5\3\2\2\2CA\3\2\2\2"+
-		"DN\5\b\5\2EN\5\n\6\2FN\5\f\7\2GN\5\16\b\2HN\5\20\t\2IJ\7\17\2\2JK\5\4"+
-		"\3\2KL\7\20\2\2LN\3\2\2\2MD\3\2\2\2ME\3\2\2\2MF\3\2\2\2MG\3\2\2\2MH\3"+
-		"\2\2\2MI\3\2\2\2N\7\3\2\2\2OP\7\23\2\2PQ\7\t\2\2QR\5\36\20\2RS\7\21\2"+
-		"\2ST\7\n\2\2TU\7\4\2\2UV\5\4\3\2Vj\3\2\2\2WX\7\23\2\2XY\7\t\2\2YZ\5\36"+
-		"\20\2Z[\7\21\2\2[\\\7\n\2\2\\]\5\6\4\2]j\3\2\2\2^_\7\23\2\2_`\5\36\20"+
-		"\2`a\7\n\2\2ab\7\4\2\2bc\5\4\3\2cj\3\2\2\2de\7\23\2\2ef\5\36\20\2fg\7"+
-		"\n\2\2gh\5\6\4\2hj\3\2\2\2iO\3\2\2\2iW\3\2\2\2i^\3\2\2\2id\3\2\2\2j\t"+
-		"\3\2\2\2kl\7\30\2\2lm\7\t\2\2mn\5\36\20\2no\7\21\2\2op\7\n\2\2pq\7\4\2"+
-		"\2qr\5\4\3\2r\u0086\3\2\2\2st\7\30\2\2tu\7\t\2\2uv\5\36\20\2vw\7\21\2"+
-		"\2wx\7\n\2\2xy\5\6\4\2y\u0086\3\2\2\2z{\7\30\2\2{|\5\36\20\2|}\7\n\2\2"+
-		"}~\7\4\2\2~\177\5\4\3\2\177\u0086\3\2\2\2\u0080\u0081\7\30\2\2\u0081\u0082"+
-		"\5\36\20\2\u0082\u0083\7\n\2\2\u0083\u0084\5\6\4\2\u0084\u0086\3\2\2\2"+
-		"\u0085k\3\2\2\2\u0085s\3\2\2\2\u0085z\3\2\2\2\u0085\u0080\3\2\2\2\u0086"+
-		"\13\3\2\2\2\u0087\u0088\7\35\2\2\u0088\u0089\7\24\2\2\u0089\u008a\5\20"+
-		"\t\2\u008a\r\3\2\2\2\u008b\u008c\7\33\2\2\u008c\u008d\7\35\2\2\u008d\u0096"+
-		"\7\t\2\2\u008e\u0093\7\35\2\2\u008f\u0090\7\5\2\2\u0090\u0092\7\35\2\2"+
-		"\u0091\u008f\3\2\2\2\u0092\u0095\3\2\2\2\u0093\u0091\3\2\2\2\u0093\u0094"+
-		"\3\2\2\2\u0094\u0097\3\2\2\2\u0095\u0093\3\2\2\2\u0096\u008e\3\2\2\2\u0096"+
-		"\u0097\3\2\2\2\u0097\u0098\3\2\2\2\u0098\u0099\7\21\2\2\u0099\u009a\7"+
-		"\n\2\2\u009a\u009b\5\4\3\2\u009b\17\3\2\2\2\u009c\u009f\5\22\n\2\u009d"+
-		"\u009f\5\36\20\2\u009e\u009c\3\2\2\2\u009e\u009d\3\2\2\2\u009f\21\3\2"+
-		"\2\2\u00a0\u00a1\5\24\13\2\u00a1\23\3\2\2\2\u00a2\u00a3\b\13\1\2\u00a3"+
-		"\u00a4\5\26\f\2\u00a4\u00aa\3\2\2\2\u00a5\u00a6\f\4\2\2\u00a6\u00a7\t"+
-		"\2\2\2\u00a7\u00a9\5\26\f\2\u00a8\u00a5\3\2\2\2\u00a9\u00ac\3\2\2\2\u00aa"+
-		"\u00a8\3\2\2\2\u00aa\u00ab\3\2\2\2\u00ab\25\3\2\2\2\u00ac\u00aa\3\2\2"+
-		"\2\u00ad\u00ae\b\f\1\2\u00ae\u00af\5\30\r\2\u00af\u00b5\3\2\2\2\u00b0"+
-		"\u00b1\f\4\2\2\u00b1\u00b2\t\3\2\2\u00b2\u00b4\5\30\r\2\u00b3\u00b0\3"+
-		"\2\2\2\u00b4\u00b7\3\2\2\2\u00b5\u00b3\3\2\2\2\u00b5\u00b6\3\2\2\2\u00b6"+
-		"\27\3\2\2\2\u00b7\u00b5\3\2\2\2\u00b8\u00b9\7\b\2\2\u00b9\u00bc\5\30\r"+
-		"\2\u00ba\u00bc\5\32\16\2\u00bb\u00b8\3\2\2\2\u00bb\u00ba\3\2\2\2\u00bc"+
-		"\31\3\2\2\2\u00bd\u00be\7\35\2\2\u00be\u00c7\7\t\2\2\u00bf\u00c4\5\20"+
-		"\t\2\u00c0\u00c1\7\5\2\2\u00c1\u00c3\5\20\t\2\u00c2\u00c0\3\2\2\2\u00c3"+
-		"\u00c6\3\2\2\2\u00c4\u00c2\3\2\2\2\u00c4\u00c5\3\2\2\2\u00c5\u00c8\3\2"+
-		"\2\2\u00c6\u00c4\3\2\2\2\u00c7\u00bf\3\2\2\2\u00c7\u00c8\3\2\2\2\u00c8"+
-		"\u00c9\3\2\2\2\u00c9\u00d5\7\21\2\2\u00ca\u00cb\7\35\2\2\u00cb\u00cc\7"+
-		"\6\2\2\u00cc\u00cd\5\22\n\2\u00cd\u00ce\7\3\2\2\u00ce\u00d5\3\2\2\2\u00cf"+
-		"\u00d0\7\t\2\2\u00d0\u00d1\5\22\n\2\u00d1\u00d2\7\21\2\2\u00d2\u00d5\3"+
-		"\2\2\2\u00d3\u00d5\5\34\17\2\u00d4\u00bd\3\2\2\2\u00d4\u00ca\3\2\2\2\u00d4"+
-		"\u00cf\3\2\2\2\u00d4\u00d3\3\2\2\2\u00d5\33\3\2\2\2\u00d6\u00d7\t\4\2"+
-		"\2\u00d7\35\3\2\2\2\u00d8\u00d9\5 \21\2\u00d9\37\3\2\2\2\u00da\u00db\b"+
-		"\21\1\2\u00db\u00dc\5\"\22\2\u00dc\u00e2\3\2\2\2\u00dd\u00de\f\4\2\2\u00de"+
-		"\u00df\7\16\2\2\u00df\u00e1\5\"\22\2\u00e0\u00dd\3\2\2\2\u00e1\u00e4\3"+
-		"\2\2\2\u00e2\u00e0\3\2\2\2\u00e2\u00e3\3\2\2\2\u00e3!\3\2\2\2\u00e4\u00e2"+
-		"\3\2\2\2\u00e5\u00e6\5$\23\2\u00e6\u00e7\7\34\2\2\u00e7\u00e8\5$\23\2"+
-		"\u00e8\u00eb\3\2\2\2\u00e9\u00eb\5$\23\2\u00ea\u00e5\3\2\2\2\u00ea\u00e9"+
-		"\3\2\2\2\u00eb#\3\2\2\2\u00ec\u00ed\7\32\2\2\u00ed\u00f5\5$\23\2\u00ee"+
-		"\u00ef\7\t\2\2\u00ef\u00f0\5\36\20\2\u00f0\u00f1\7\21\2\2\u00f1\u00f5"+
-		"\3\2\2\2\u00f2\u00f5\7!\2\2\u00f3\u00f5\5&\24\2\u00f4\u00ec\3\2\2\2\u00f4"+
-		"\u00ee\3\2\2\2\u00f4\u00f2\3\2\2\2\u00f4\u00f3\3\2\2\2\u00f5%\3\2\2\2"+
-		"\u00f6\u00f7\5\22\n\2\u00f7\u00f8\t\5\2\2\u00f8\u00f9\5\22\n\2\u00f9\u00fc"+
-		"\3\2\2\2\u00fa\u00fc\5(\25\2\u00fb\u00f6\3\2\2\2\u00fb\u00fa\3\2\2\2\u00fc"+
-		"\'\3\2\2\2\u00fd\u00fe\7\35\2\2\u00fe)\3\2\2\2\26.\639AMi\u0085\u0093"+
-		"\u0096\u009e\u00aa\u00b5\u00bb\u00c4\u00c7\u00d4\u00e2\u00ea\u00f4\u00fb";
+		"\3\5\3\5\3\5\3\5\3\5\5\5X\n\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5"+
+		"\3\5\3\5\3\5\5\5g\n\5\3\5\3\5\3\5\3\5\3\5\5\5n\n\5\3\6\3\6\3\6\3\6\3\6"+
+		"\3\6\3\6\3\6\5\6x\n\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6"+
+		"\3\6\5\6\u0087\n\6\3\6\3\6\3\6\3\6\3\6\5\6\u008e\n\6\3\7\3\7\3\7\3\7\3"+
+		"\b\3\b\3\b\3\b\3\b\3\b\7\b\u009a\n\b\f\b\16\b\u009d\13\b\5\b\u009f\n\b"+
+		"\3\b\3\b\3\b\3\b\3\b\3\t\3\t\5\t\u00a8\n\t\3\n\3\n\3\13\3\13\3\13\3\13"+
+		"\3\13\3\13\7\13\u00b2\n\13\f\13\16\13\u00b5\13\13\3\f\3\f\3\f\3\f\3\f"+
+		"\3\f\7\f\u00bd\n\f\f\f\16\f\u00c0\13\f\3\r\3\r\3\r\5\r\u00c5\n\r\3\16"+
+		"\3\16\3\16\3\16\3\16\7\16\u00cc\n\16\f\16\16\16\u00cf\13\16\5\16\u00d1"+
+		"\n\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\5\16\u00de"+
+		"\n\16\3\17\3\17\3\20\3\20\3\21\3\21\3\21\3\21\3\21\3\21\7\21\u00ea\n\21"+
+		"\f\21\16\21\u00ed\13\21\3\22\3\22\3\22\3\22\3\22\5\22\u00f4\n\22\3\23"+
+		"\3\23\3\23\3\23\3\23\3\23\3\23\3\23\5\23\u00fe\n\23\3\24\3\24\3\24\3\24"+
+		"\3\24\5\24\u0105\n\24\3\25\3\25\3\25\2\5\24\26 \26\2\4\6\b\n\f\16\20\22"+
+		"\24\26\30\32\34\36 \"$&(\2\6\4\2\b\b\22\22\4\2\7\7\26\26\3\2\36!\6\2\13"+
+		"\r\25\25\27\27\31\31\u0118\2*\3\2\2\2\4<\3\2\2\2\6M\3\2\2\2\bm\3\2\2\2"+
+		"\n\u008d\3\2\2\2\f\u008f\3\2\2\2\16\u0093\3\2\2\2\20\u00a7\3\2\2\2\22"+
+		"\u00a9\3\2\2\2\24\u00ab\3\2\2\2\26\u00b6\3\2\2\2\30\u00c4\3\2\2\2\32\u00dd"+
+		"\3\2\2\2\34\u00df\3\2\2\2\36\u00e1\3\2\2\2 \u00e3\3\2\2\2\"\u00f3\3\2"+
+		"\2\2$\u00fd\3\2\2\2&\u0104\3\2\2\2(\u0106\3\2\2\2*\63\5\4\3\2+-\7\4\2"+
+		"\2,+\3\2\2\2-.\3\2\2\2.,\3\2\2\2./\3\2\2\2/\60\3\2\2\2\60\62\5\4\3\2\61"+
+		",\3\2\2\2\62\65\3\2\2\2\63\61\3\2\2\2\63\64\3\2\2\2\649\3\2\2\2\65\63"+
+		"\3\2\2\2\668\7\4\2\2\67\66\3\2\2\28;\3\2\2\29\67\3\2\2\29:\3\2\2\2:\3"+
+		"\3\2\2\2;9\3\2\2\2<A\5\6\4\2=>\7\4\2\2>@\5\6\4\2?=\3\2\2\2@C\3\2\2\2A"+
+		"?\3\2\2\2AB\3\2\2\2B\5\3\2\2\2CA\3\2\2\2DN\5\b\5\2EN\5\n\6\2FN\5\f\7\2"+
+		"GN\5\16\b\2HN\5\20\t\2IJ\7\17\2\2JK\5\4\3\2KL\7\20\2\2LN\3\2\2\2MD\3\2"+
+		"\2\2ME\3\2\2\2MF\3\2\2\2MG\3\2\2\2MH\3\2\2\2MI\3\2\2\2N\7\3\2\2\2OP\7"+
+		"\23\2\2PQ\7\t\2\2QR\5\36\20\2RS\7\21\2\2ST\7\n\2\2TU\7\4\2\2UW\5\4\3\2"+
+		"VX\7\4\2\2WV\3\2\2\2WX\3\2\2\2Xn\3\2\2\2YZ\7\23\2\2Z[\7\t\2\2[\\\5\36"+
+		"\20\2\\]\7\21\2\2]^\7\n\2\2^_\5\6\4\2_n\3\2\2\2`a\7\23\2\2ab\5\36\20\2"+
+		"bc\7\n\2\2cd\7\4\2\2df\5\4\3\2eg\7\4\2\2fe\3\2\2\2fg\3\2\2\2gn\3\2\2\2"+
+		"hi\7\23\2\2ij\5\36\20\2jk\7\n\2\2kl\5\6\4\2ln\3\2\2\2mO\3\2\2\2mY\3\2"+
+		"\2\2m`\3\2\2\2mh\3\2\2\2n\t\3\2\2\2op\7\30\2\2pq\7\t\2\2qr\5\36\20\2r"+
+		"s\7\21\2\2st\7\n\2\2tu\7\4\2\2uw\5\4\3\2vx\7\4\2\2wv\3\2\2\2wx\3\2\2\2"+
+		"x\u008e\3\2\2\2yz\7\30\2\2z{\7\t\2\2{|\5\36\20\2|}\7\21\2\2}~\7\n\2\2"+
+		"~\177\5\6\4\2\177\u008e\3\2\2\2\u0080\u0081\7\30\2\2\u0081\u0082\5\36"+
+		"\20\2\u0082\u0083\7\n\2\2\u0083\u0084\7\4\2\2\u0084\u0086\5\4\3\2\u0085"+
+		"\u0087\7\4\2\2\u0086\u0085\3\2\2\2\u0086\u0087\3\2\2\2\u0087\u008e\3\2"+
+		"\2\2\u0088\u0089\7\30\2\2\u0089\u008a\5\36\20\2\u008a\u008b\7\n\2\2\u008b"+
+		"\u008c\5\6\4\2\u008c\u008e\3\2\2\2\u008do\3\2\2\2\u008dy\3\2\2\2\u008d"+
+		"\u0080\3\2\2\2\u008d\u0088\3\2\2\2\u008e\13\3\2\2\2\u008f\u0090\7\36\2"+
+		"\2\u0090\u0091\7\24\2\2\u0091\u0092\5\20\t\2\u0092\r\3\2\2\2\u0093\u0094"+
+		"\7\33\2\2\u0094\u0095\7\36\2\2\u0095\u009e\7\t\2\2\u0096\u009b\7\36\2"+
+		"\2\u0097\u0098\7\5\2\2\u0098\u009a\7\36\2\2\u0099\u0097\3\2\2\2\u009a"+
+		"\u009d\3\2\2\2\u009b\u0099\3\2\2\2\u009b\u009c\3\2\2\2\u009c\u009f\3\2"+
+		"\2\2\u009d\u009b\3\2\2\2\u009e\u0096\3\2\2\2\u009e\u009f\3\2\2\2\u009f"+
+		"\u00a0\3\2\2\2\u00a0\u00a1\7\21\2\2\u00a1\u00a2\7\n\2\2\u00a2\u00a3\7"+
+		"\4\2\2\u00a3\u00a4\5\4\3\2\u00a4\17\3\2\2\2\u00a5\u00a8\5\36\20\2\u00a6"+
+		"\u00a8\5\22\n\2\u00a7\u00a5\3\2\2\2\u00a7\u00a6\3\2\2\2\u00a8\21\3\2\2"+
+		"\2\u00a9\u00aa\5\24\13\2\u00aa\23\3\2\2\2\u00ab\u00ac\b\13\1\2\u00ac\u00ad"+
+		"\5\26\f\2\u00ad\u00b3\3\2\2\2\u00ae\u00af\f\4\2\2\u00af\u00b0\t\2\2\2"+
+		"\u00b0\u00b2\5\26\f\2\u00b1\u00ae\3\2\2\2\u00b2\u00b5\3\2\2\2\u00b3\u00b1"+
+		"\3\2\2\2\u00b3\u00b4\3\2\2\2\u00b4\25\3\2\2\2\u00b5\u00b3\3\2\2\2\u00b6"+
+		"\u00b7\b\f\1\2\u00b7\u00b8\5\30\r\2\u00b8\u00be\3\2\2\2\u00b9\u00ba\f"+
+		"\4\2\2\u00ba\u00bb\t\3\2\2\u00bb\u00bd\5\30\r\2\u00bc\u00b9\3\2\2\2\u00bd"+
+		"\u00c0\3\2\2\2\u00be\u00bc\3\2\2\2\u00be\u00bf\3\2\2\2\u00bf\27\3\2\2"+
+		"\2\u00c0\u00be\3\2\2\2\u00c1\u00c2\7\b\2\2\u00c2\u00c5\5\30\r\2\u00c3"+
+		"\u00c5\5\32\16\2\u00c4\u00c1\3\2\2\2\u00c4\u00c3\3\2\2\2\u00c5\31\3\2"+
+		"\2\2\u00c6\u00c7\7\36\2\2\u00c7\u00d0\7\t\2\2\u00c8\u00cd\5\20\t\2\u00c9"+
+		"\u00ca\7\5\2\2\u00ca\u00cc\5\20\t\2\u00cb\u00c9\3\2\2\2\u00cc\u00cf\3"+
+		"\2\2\2\u00cd\u00cb\3\2\2\2\u00cd\u00ce\3\2\2\2\u00ce\u00d1\3\2\2\2\u00cf"+
+		"\u00cd\3\2\2\2\u00d0\u00c8\3\2\2\2\u00d0\u00d1\3\2\2\2\u00d1\u00d2\3\2"+
+		"\2\2\u00d2\u00de\7\21\2\2\u00d3\u00d4\7\36\2\2\u00d4\u00d5\7\6\2\2\u00d5"+
+		"\u00d6\5\22\n\2\u00d6\u00d7\7\3\2\2\u00d7\u00de\3\2\2\2\u00d8\u00d9\7"+
+		"\t\2\2\u00d9\u00da\5\22\n\2\u00da\u00db\7\21\2\2\u00db\u00de\3\2\2\2\u00dc"+
+		"\u00de\5\34\17\2\u00dd\u00c6\3\2\2\2\u00dd\u00d3\3\2\2\2\u00dd\u00d8\3"+
+		"\2\2\2\u00dd\u00dc\3\2\2\2\u00de\33\3\2\2\2\u00df\u00e0\t\4\2\2\u00e0"+
+		"\35\3\2\2\2\u00e1\u00e2\5 \21\2\u00e2\37\3\2\2\2\u00e3\u00e4\b\21\1\2"+
+		"\u00e4\u00e5\5\"\22\2\u00e5\u00eb\3\2\2\2\u00e6\u00e7\f\4\2\2\u00e7\u00e8"+
+		"\7\16\2\2\u00e8\u00ea\5\"\22\2\u00e9\u00e6\3\2\2\2\u00ea\u00ed\3\2\2\2"+
+		"\u00eb\u00e9\3\2\2\2\u00eb\u00ec\3\2\2\2\u00ec!\3\2\2\2\u00ed\u00eb\3"+
+		"\2\2\2\u00ee\u00ef\5$\23\2\u00ef\u00f0\7\34\2\2\u00f0\u00f1\5$\23\2\u00f1"+
+		"\u00f4\3\2\2\2\u00f2\u00f4\5$\23\2\u00f3\u00ee\3\2\2\2\u00f3\u00f2\3\2"+
+		"\2\2\u00f4#\3\2\2\2\u00f5\u00f6\7\32\2\2\u00f6\u00fe\5$\23\2\u00f7\u00f8"+
+		"\7\t\2\2\u00f8\u00f9\5\36\20\2\u00f9\u00fa\7\21\2\2\u00fa\u00fe\3\2\2"+
+		"\2\u00fb\u00fe\7\35\2\2\u00fc\u00fe\5&\24\2\u00fd\u00f5\3\2\2\2\u00fd"+
+		"\u00f7\3\2\2\2\u00fd\u00fb\3\2\2\2\u00fd\u00fc\3\2\2\2\u00fe%\3\2\2\2"+
+		"\u00ff\u0100\5\22\n\2\u0100\u0101\t\5\2\2\u0101\u0102\5\22\n\2\u0102\u0105"+
+		"\3\2\2\2\u0103\u0105\5(\25\2\u0104\u00ff\3\2\2\2\u0104\u0103\3\2\2\2\u0105"+
+		"\'\3\2\2\2\u0106\u0107\7\36\2\2\u0107)\3\2\2\2\32.\639AMWfmw\u0086\u008d"+
+		"\u009b\u009e\u00a7\u00b3\u00be\u00c4\u00cd\u00d0\u00dd\u00eb\u00f3\u00fd"+
+		"\u0104";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
