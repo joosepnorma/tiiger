@@ -39,7 +39,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitTõeväärtusR(@NotNull TiigrikeelParser.TõeväärtusRContext ctx) {
-		TõeväärtusLiteraal väärtus = null;
+		TõeväärtusLiteraal väärtus;
 		if (ctx.getText().equals("jah")) {
 			väärtus = new TõeväärtusLiteraal(true);
 		} else {
@@ -61,11 +61,11 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 	public AstNode visitAvaldis(@NotNull TiigrikeelParser.AvaldisContext ctx) {
 		Avaldis avaldis = null;
 
-		if (!ctx.hulk().isEmpty()) {
+		if (ctx.hulk() != null) {
 			avaldis = (Avaldis)this.visitHulk(ctx.hulk());
-		} else if (!ctx.lausearvutus().isEmpty()) {
+		} else if (ctx.lausearvutus() != null) {
 			avaldis = (Avaldis)this.visitLausearvutus(ctx.lausearvutus());
-		} else if (!ctx.tehe().isEmpty()) {
+		} else if (ctx.tehe() != null) {
 			avaldis = (Avaldis)this.visitTehe(ctx.tehe());
 		}
 
@@ -89,9 +89,9 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 		Avaldis tingimus = (Avaldis)this.visitLausearvutus(ctx.lausearvutus());
 
 		LauseteJada sisu = null;
-		if (!ctx.lauseteJada().isEmpty()) {
+		if (ctx.lauseteJada() != null) {
 			sisu = (LauseteJada)this.visitLauseteJada(ctx.lauseteJada());
-		} else if (!ctx.lause().isEmpty()) {
+		} else if (ctx.lause() != null) {
 			sisu = (LauseteJada)this.visitLause(ctx.lause());
 		}
 
@@ -103,9 +103,9 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 		Avaldis tingimus = (Avaldis)this.visitLausearvutus(ctx.lausearvutus());
 
 		LauseteJada sisu = null;
-		if (!ctx.lauseteJada().isEmpty()) {
+		if (ctx.lauseteJada() != null) {
 			sisu = (LauseteJada)this.visitLauseteJada(ctx.lauseteJada());
-		} else if (!ctx.lause().isEmpty()) {
+		} else if (ctx.lause() != null) {
 			sisu = (LauseteJada)this.visitLause(ctx.lause());
 		}
 
@@ -141,10 +141,10 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitLause(@NotNull TiigrikeelParser.LauseContext ctx) {
-		if (!ctx.lauseteJada().isEmpty()) {
+		System.out.println("ASTCreationVisitor.visitLause");
+		if (ctx.lauseteJada() != null) {
+			System.out.println("visitLause -> visitLauseteJada");
 			return (Lause)this.visitLauseteJada(ctx.lauseteJada());
-		} else if (!ctx.avaldis().isEmpty()) {
-			return this.visitAvaldis(ctx.avaldis());
 		}
 		return (Lause)this.visit(ctx.getChild(0));
 	}
@@ -278,5 +278,24 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 		return new Funktsioon(funktsiooniNimi, parameetrid);
 	}
 
+	@Override
+	public AstNode visitProgramm(@NotNull TiigrikeelParser.ProgrammContext ctx) {
+		List<LauseteJada> lauseteJadad = new ArrayList<LauseteJada>();
+		List<TiigrikeelParser.LauseteJadaContext> kontekstid = ctx.lauseteJada();
+		for (int i=0; i<kontekstid.size(); i++) {
+			lauseteJadad.add((LauseteJada)this.visit(kontekstid.get(i)));
+		}
 
+		return new Programm(lauseteJadad);
+	}
+
+	@Override
+	public AstNode visitJärjendiFunktsioon(@NotNull TiigrikeelParser.JärjendiFunktsioonContext ctx) {
+		String funktsiooniNimi = "võtaHulgaElement";
+
+		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
+		parameetrid.add((Avaldis)this.visit(ctx.tehe()));
+
+		return new Funktsioon(funktsiooniNimi, parameetrid);
+	}
 }
