@@ -212,11 +212,6 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 	}
 
 	@Override
-	public AstNode visitTriviaalneLausearvutus0(@NotNull TiigrikeelParser.TriviaalneLausearvutus0Context ctx) {
-		return new Muutuja(ctx.lausearvutus0().getText());
-	}
-
-	@Override
 	public AstNode visitUnaarneMiinus(@NotNull TiigrikeelParser.UnaarneMiinusContext ctx) {
 		String funktsiooniNimi = "unaarneMiinus";
 
@@ -226,5 +221,62 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 		return new Funktsioon(funktsiooniNimi, parameetrid);
 	}
 
-	
+	@Override
+	public AstNode visitKorrutamineJagamine(@NotNull TiigrikeelParser.KorrutamineJagamineContext ctx) {
+		String funktsiooniNimi;
+
+		if (ctx.getText().equals("*")) {
+			funktsiooniNimi = "korrutamine";
+		} else {
+			funktsiooniNimi = "jagamine";
+		}
+
+		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
+		parameetrid.add((Avaldis)this.visit(ctx.tehe3()));
+		parameetrid.add((Avaldis)this.visit(ctx.tehe2()));
+
+		return new Funktsioon(funktsiooniNimi, parameetrid);
+	}
+
+	@Override
+	public AstNode visitLiitmineLahutamine(@NotNull TiigrikeelParser.LiitmineLahutamineContext ctx) {
+		String funktsiooniNimi;
+
+		if (ctx.getText().equals("+")) {
+			funktsiooniNimi = "liitmine";
+		} else {
+			funktsiooniNimi = "lahutamine";
+		}
+
+		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
+		parameetrid.add((Avaldis)this.visit(ctx.tehe4()));
+		parameetrid.add((Avaldis)this.visit(ctx.tehe3()));
+
+		return new Funktsioon(funktsiooniNimi, parameetrid);
+	}
+
+	@Override
+	public AstNode visitLausearvutus0(@NotNull TiigrikeelParser.Lausearvutus0Context ctx) {
+		return new Muutuja(ctx.getText());
+	}
+
+	@Override
+	public AstNode visitSulustatudTehe(@NotNull TiigrikeelParser.SulustatudTeheContext ctx) {
+		return this.visit(ctx.tehe());
+	}
+
+	@Override
+	public AstNode visitFunktsioon(@NotNull TiigrikeelParser.FunktsioonContext ctx) {
+		String funktsiooniNimi = ctx.MuutujaNimi().getText();
+
+		List<TiigrikeelParser.AvaldisContext> muutujad = ctx.avaldis();
+		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
+		for (int i=0; i<muutujad.size(); i++) {
+			parameetrid.add((Avaldis)this.visit(muutujad.get(i)));
+		}
+
+		return new Funktsioon(funktsiooniNimi, parameetrid);
+	}
+
+
 }
