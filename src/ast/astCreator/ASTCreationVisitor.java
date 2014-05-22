@@ -15,4 +15,6 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
     public AstNode visitProgramm(@NotNull TiigrikeelParser.ProgrammContext ctx) {
 		return null;
     }
+
+
 }
