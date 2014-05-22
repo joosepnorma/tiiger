@@ -141,9 +141,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitLause(@NotNull TiigrikeelParser.LauseContext ctx) {
-		System.out.println("ASTCreationVisitor.visitLause");
 		if (ctx.lauseteJada() != null) {
-			System.out.println("visitLause -> visitLauseteJada");
 			return (Lause)this.visitLauseteJada(ctx.lauseteJada());
 		}
 		return (Lause)this.visit(ctx.getChild(0));

@@ -11,7 +11,7 @@ import parser.TiigrikeelParser;
 
 public class main {
     public static void main(String[] args) {
-        String input = "x=5";
+        String input = "x=y\nx=6.0+7*9";
         AstNode tree = ASTCreator.createAST(input);
     }
 
