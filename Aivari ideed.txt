@@ -1,0 +1,32 @@
+Väärtus eval(AstNode node, Map<String, Väärtus> env) {
+    if (node instanceof FunktsiooniKutse) {
+        funNimi = node.nimi
+        argumendid = node.args
+
+        fun = env.get(funNimi)
+        return fun.apply(argumendid + env)
+    }
+}
+
+Väärtus
+    Integer
+    String
+    Function
+        Lausu
+        Sisesta
+        MinuFunction
+
+
+class Lausu {
+    Väärtus apply(args) {
+        System.out.println(args[0])
+    }
+}
+
+class MinuFunction {
+    MinuFunction(AstNode body) {...}
+
+    Väärtus apply(args) {
+        Interpreter.eval(this.body, args)
+    }
+}

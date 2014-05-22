@@ -7,10 +7,10 @@ public class Funktsioon extends Avaldis {
     private final String funktsiooniNimi;
     private final List<Avaldis> parameetrid;
 
-    public Funktsioon(String funktsiooniNimi, List<Avaldis> parameetrid) {
-        this.funktsiooniNimi = funktsiooniNimi;
-        this.parameetrid = parameetrid;
-    }
+	public Funktsioon(String funktsiooniNimi, List<Avaldis> parameetrid) {
+		this.funktsiooniNimi = funktsiooniNimi;
+		this.parameetrid = parameetrid;
+	}
 
     @Override
     public List<Object> getChildren() {

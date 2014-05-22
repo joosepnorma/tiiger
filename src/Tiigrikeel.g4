@@ -42,6 +42,7 @@ uusFunktsioon
 avaldis
     :   lausearvutus
     |   tehe
+    |   hulk
     ;
 
 tehe
@@ -71,10 +72,10 @@ tehe1
     ;
 
 tehe0
-    :   MuutujaNimi
-    |   Täisarv
-    |   Komaga
-    |   Sõne
+    :   MuutujaNimi                                         #MuutujaNimiR
+    |   Täisarv                                             #TäisarvR
+    |   Komaga                                              #KomagaR
+    |   Sõne                                                #SõneR
     ;
 
 lausearvutus
@@ -87,14 +88,14 @@ lausearvutus4
     ;
 
 lausearvutus3
-    :   lausearvutus2 'ja' lausearvutus2                    #Konjunktsioon
+    :   lausearvutus3 'ja' lausearvutus2                    #Konjunktsioon
     |   lausearvutus2                                       #TriviaalneLausearvutus2
     ;
 
 lausearvutus2
     :   '!' lausearvutus2                                   #Eitus
     |   '(' lausearvutus ')'                                #SulustatudLausearvutus
-    |   Tõeväärtus                                          #Tõeväärtus
+    |   Tõeväärtus                                          #TõeväärtusR
     |   lausearvutus1                                       #TriviaalneLausearvutus1
     ;
 
@@ -105,6 +106,10 @@ lausearvutus1
 
 lausearvutus0
     :   MuutujaNimi
+    ;
+
+hulk
+    :   '(' (avaldis (',' avaldis)*)? ')'
     ;
 
 Tõeväärtus

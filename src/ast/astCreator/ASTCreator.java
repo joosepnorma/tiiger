@@ -13,6 +13,8 @@ public class ASTCreator {
 		TiigrikeelVisitor<AstNode> visitor = new ASTCreationVisitor();
 		ParseTree tree = createParseTree(programm);
 
+		System.out.println("AST: " + tree.toString());
+
 		return tree.accept(visitor);
 	}
 
@@ -23,7 +25,7 @@ public class ASTCreator {
 		TiigrikeelParser parser = new TiigrikeelParser(tokens);
 		ParseTree tree = parser.programm();
 
-		System.out.println(tree.toStringTree(parser));
+		System.out.println("ParseTree: " + tree.toStringTree(parser));
 
 		return tree;
 	}

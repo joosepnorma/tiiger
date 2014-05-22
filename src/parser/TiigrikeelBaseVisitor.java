@@ -46,6 +46,13 @@ public class TiigrikeelBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitDisjunktsioon(@NotNull TiigrikeelParser.DisjunktsioonContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitTriviaalneTehe2(@NotNull TiigrikeelParser.TriviaalneTehe2Context ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -53,7 +60,7 @@ public class TiigrikeelBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDisjunktsioon(@NotNull TiigrikeelParser.DisjunktsioonContext ctx) { return visitChildren(ctx); }
+	@Override public T visitHulk(@NotNull TiigrikeelParser.HulkContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -102,6 +109,13 @@ public class TiigrikeelBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitSõneR(@NotNull TiigrikeelParser.SõneRContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitLiitmineLahutamine(@NotNull TiigrikeelParser.LiitmineLahutamineContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -144,7 +158,7 @@ public class TiigrikeelBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTehe0(@NotNull TiigrikeelParser.Tehe0Context ctx) { return visitChildren(ctx); }
+	@Override public T visitKomagaR(@NotNull TiigrikeelParser.KomagaRContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -152,6 +166,13 @@ public class TiigrikeelBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitProgramm(@NotNull TiigrikeelParser.ProgrammContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTõeväärtusR(@NotNull TiigrikeelParser.TõeväärtusRContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -179,14 +200,14 @@ public class TiigrikeelBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTriviaalneLausearvutus0(@NotNull TiigrikeelParser.TriviaalneLausearvutus0Context ctx) { return visitChildren(ctx); }
+	@Override public T visitMuutujaNimiR(@NotNull TiigrikeelParser.MuutujaNimiRContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTõeväärtus(@NotNull TiigrikeelParser.TõeväärtusContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTriviaalneLausearvutus0(@NotNull TiigrikeelParser.TriviaalneLausearvutus0Context ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -208,6 +229,13 @@ public class TiigrikeelBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitTriviaalneLausearvutus3(@NotNull TiigrikeelParser.TriviaalneLausearvutus3Context ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTäisarvR(@NotNull TiigrikeelParser.TäisarvRContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

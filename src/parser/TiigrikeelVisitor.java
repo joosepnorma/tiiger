@@ -36,17 +36,23 @@ public interface TiigrikeelVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTriviaalneTehe1(@NotNull TiigrikeelParser.TriviaalneTehe1Context ctx);
 	/**
+	 * Visit a parse tree produced by {@link TiigrikeelParser#Disjunktsioon}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDisjunktsioon(@NotNull TiigrikeelParser.DisjunktsioonContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TiigrikeelParser#TriviaalneTehe2}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitTriviaalneTehe2(@NotNull TiigrikeelParser.TriviaalneTehe2Context ctx);
 	/**
-	 * Visit a parse tree produced by {@link TiigrikeelParser#Disjunktsioon}.
+	 * Visit a parse tree produced by {@link TiigrikeelParser#hulk}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDisjunktsioon(@NotNull TiigrikeelParser.DisjunktsioonContext ctx);
+	T visitHulk(@NotNull TiigrikeelParser.HulkContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TiigrikeelParser#UnaarneMiinus}.
 	 * @param ctx the parse tree
@@ -84,6 +90,12 @@ public interface TiigrikeelVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitKonjunktsioon(@NotNull TiigrikeelParser.KonjunktsioonContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TiigrikeelParser#SõneR}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSõneR(@NotNull TiigrikeelParser.SõneRContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TiigrikeelParser#LiitmineLahutamine}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -120,17 +132,23 @@ public interface TiigrikeelVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunktsioon(@NotNull TiigrikeelParser.FunktsioonContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TiigrikeelParser#tehe0}.
+	 * Visit a parse tree produced by {@link TiigrikeelParser#KomagaR}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTehe0(@NotNull TiigrikeelParser.Tehe0Context ctx);
+	T visitKomagaR(@NotNull TiigrikeelParser.KomagaRContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TiigrikeelParser#programm}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitProgramm(@NotNull TiigrikeelParser.ProgrammContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiigrikeelParser#TõeväärtusR}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTõeväärtusR(@NotNull TiigrikeelParser.TõeväärtusRContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TiigrikeelParser#lauseteJada}.
 	 * @param ctx the parse tree
@@ -150,17 +168,17 @@ public interface TiigrikeelVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVõrdlus(@NotNull TiigrikeelParser.VõrdlusContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TiigrikeelParser#MuutujaNimiR}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMuutujaNimiR(@NotNull TiigrikeelParser.MuutujaNimiRContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TiigrikeelParser#TriviaalneLausearvutus0}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitTriviaalneLausearvutus0(@NotNull TiigrikeelParser.TriviaalneLausearvutus0Context ctx);
-	/**
-	 * Visit a parse tree produced by {@link TiigrikeelParser#Tõeväärtus}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTõeväärtus(@NotNull TiigrikeelParser.TõeväärtusContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TiigrikeelParser#TriviaalneLausearvutus1}.
 	 * @param ctx the parse tree
@@ -179,6 +197,12 @@ public interface TiigrikeelVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTriviaalneLausearvutus3(@NotNull TiigrikeelParser.TriviaalneLausearvutus3Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiigrikeelParser#TäisarvR}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTäisarvR(@NotNull TiigrikeelParser.TäisarvRContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TiigrikeelParser#TriviaalneTehe3}.
 	 * @param ctx the parse tree

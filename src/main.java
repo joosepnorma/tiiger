@@ -1,3 +1,4 @@
+import ast.AstNode;
 import ast.astCreator.ASTCreator;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -11,7 +12,7 @@ import parser.TiigrikeelParser;
 public class main {
     public static void main(String[] args) {
         String input = "x=5";
-        ParseTree tree = ASTCreator.createParseTree(input);
+        AstNode tree = ASTCreator.createAST(input);
     }
 
 }
