@@ -22,4 +22,16 @@ public class FunktsiooniDeklaratsioon extends Lause {
 		list.add(sisu);
 		return list;
 	}
+
+	public String getFunktsiooniNimi() {
+		return funktsiooniNimi;
+	}
+
+	public List<String> getParameetrid() {
+		return parameetrid;
+	}
+
+	public LauseteJada getSisu() {
+		return sisu;
+	}
 }

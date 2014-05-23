@@ -14,4 +14,8 @@ public class Hulk extends Avaldis {
 	public List<Object> getChildren() {
 		return new ArrayList<Object>(elemendid);
 	}
+
+	public List<Avaldis> getElemendid() {
+		return elemendid;
+	}
 }

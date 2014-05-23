@@ -13,6 +13,12 @@ public class main {
     public static void main(String[] args) {
         String input = "1>=9";
         AstNode tree = ASTCreator.createAST(input);
+
+	    String a;
+	    if (true) {
+	        a = "tere";
+	    }
+	    System.out.println(a);
     }
 
 }
