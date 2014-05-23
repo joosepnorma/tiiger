@@ -1,5 +1,3 @@
-package gui;
-
 import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -13,6 +11,7 @@ public class MainGUI {
 	private static JFrame frame;
 	public static HarjutusGUI harjutusGUI;
 	public static MangGUI mangGUI;
+	public static ValikGUI valikGUI;
 	private static JPanel cards;
 	
 	
@@ -20,6 +19,7 @@ public class MainGUI {
 		Container mainpanel = new MainPanel();
 		harjutusGUI = new HarjutusGUI();
 		mangGUI = new MangGUI();
+		valikGUI = new ValikGUI();
 		frame = new JFrame("Tiiger");
 		frame.setMinimumSize(new Dimension(800,600));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,6 +28,7 @@ public class MainGUI {
 		cards.add(mainpanel,"main");
 		cards.add(harjutusGUI, "harjutus");
 		cards.add(mangGUI, "mang");
+		cards.add(valikGUI, "valik");
 		((CardLayout) cards.getLayout()).show(cards,"main");
 		
 		frame.getContentPane().add(cards);
