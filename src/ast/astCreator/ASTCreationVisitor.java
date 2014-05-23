@@ -59,6 +59,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitAvaldis(@NotNull TiigrikeelParser.AvaldisContext ctx) {
+		System.out.println("ASTCreationVisitor.visitAvaldis");
 		Avaldis avaldis = null;
 
 		if (ctx.hulk() != null) {
@@ -66,7 +67,9 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 		} else if (ctx.lausearvutus() != null) {
 			avaldis = (Avaldis)this.visitLausearvutus(ctx.lausearvutus());
 		} else if (ctx.tehe() != null) {
+			System.out.println("visitAvaldis -> tehe");
 			avaldis = (Avaldis)this.visitTehe(ctx.tehe());
+			System.out.println("visitAvaldis <- tehe");
 		}
 
 		return avaldis;
@@ -129,6 +132,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitLauseteJada(@NotNull TiigrikeelParser.LauseteJadaContext ctx) {
+		System.out.println("ASTCreationVisitor.visitLauseteJada");
 		List<Lause> tulemus = new ArrayList<Lause>();
 
 		List<TiigrikeelParser.LauseContext> laused = ctx.lause();
@@ -141,10 +145,13 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitLause(@NotNull TiigrikeelParser.LauseContext ctx) {
+		System.out.println("ASTCreationVisitor.visitLause");
 		if (ctx.lauseteJada() != null) {
-			return (Lause)this.visitLauseteJada(ctx.lauseteJada());
+			return this.visitLauseteJada(ctx.lauseteJada());
+		} else if (ctx.avaldis() != null) {
+			return new AvaldisLause((Avaldis)this.visit(ctx.avaldis()));
 		}
-		return (Lause)this.visit(ctx.getChild(0));
+		return this.visit(ctx.getChild(0));
 	}
 
 	@Override
@@ -188,17 +195,17 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 	public AstNode visitVõrdlus(@NotNull TiigrikeelParser.VõrdlusContext ctx) {
 		String funktsiooniNimi = ctx.getText();
 
-		if (ctx.getText().equals("<")) {
+		if (ctx.getChild(1).getText().equals("<")) {
 			funktsiooniNimi = "lt";
-		} else if (ctx.getText().equals("<=")) {
+		} else if (ctx.getChild(1).getText().equals("<=")) {
 			funktsiooniNimi = "le";
-		} else if (ctx.getText().equals(">")) {
+		} else if (ctx.getChild(1).getText().equals(">")) {
 			funktsiooniNimi = "gt";
-		} else if (ctx.getText().equals(">=")) {
+		} else if (ctx.getChild(1).getText().equals(">=")) {
 			funktsiooniNimi = "ge";
-		} else if (ctx.getText().equals("==")) {
+		} else if (ctx.getChild(1).getText().equals("==")) {
 			funktsiooniNimi = "eq";
-		} else if (ctx.getText().equals("!=")) {
+		} else if (ctx.getChild(1).getText().equals("!=")) {
 			funktsiooniNimi = "ne";
 		}
 
@@ -223,7 +230,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 	public AstNode visitKorrutamineJagamine(@NotNull TiigrikeelParser.KorrutamineJagamineContext ctx) {
 		String funktsiooniNimi;
 
-		if (ctx.getText().equals("*")) {
+		if (ctx.getChild(1).getText().equals("*")) {
 			funktsiooniNimi = "korrutamine";
 		} else {
 			funktsiooniNimi = "jagamine";
@@ -240,7 +247,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 	public AstNode visitLiitmineLahutamine(@NotNull TiigrikeelParser.LiitmineLahutamineContext ctx) {
 		String funktsiooniNimi;
 
-		if (ctx.getText().equals("+")) {
+		if (ctx.getChild(1).getText().equals("+")) {
 			funktsiooniNimi = "liitmine";
 		} else {
 			funktsiooniNimi = "lahutamine";
@@ -273,7 +280,10 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 			parameetrid.add((Avaldis)this.visit(muutujad.get(i)));
 		}
 
+		// Kontrollime, kas nimi vastab mõnele meie funktsioonile
 		return new Funktsioon(funktsiooniNimi, parameetrid);
+
+		// kui ei, siis teeme UusFunktsiooni
 	}
 
 	@Override
