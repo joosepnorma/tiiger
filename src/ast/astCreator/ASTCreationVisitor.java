@@ -156,7 +156,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitDisjunktsioon(@NotNull TiigrikeelParser.DisjunktsioonContext ctx) {
-		String funktsiooniNimi = "või";
+		String funktsiooniNimi = "||";
 
 		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
 		parameetrid.add((Avaldis)this.visit(ctx.lausearvutus4()));
@@ -167,7 +167,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitKonjunktsioon(@NotNull TiigrikeelParser.KonjunktsioonContext ctx) {
-		String funktsiooniNimi = "ja";
+		String funktsiooniNimi = "&&";
 
 		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
 		parameetrid.add((Avaldis)this.visit(ctx.lausearvutus3()));
@@ -178,7 +178,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitEitus(@NotNull TiigrikeelParser.EitusContext ctx) {
-		String funktsiooniNimi = "ei";
+		String funktsiooniNimi = "!";
 
 		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
 		parameetrid.add((Avaldis)this.visit(ctx.lausearvutus2()));
@@ -193,21 +193,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitVõrdlus(@NotNull TiigrikeelParser.VõrdlusContext ctx) {
-		String funktsiooniNimi = ctx.getText();
-
-		if (ctx.getChild(1).getText().equals("<")) {
-			funktsiooniNimi = "lt";
-		} else if (ctx.getChild(1).getText().equals("<=")) {
-			funktsiooniNimi = "le";
-		} else if (ctx.getChild(1).getText().equals(">")) {
-			funktsiooniNimi = "gt";
-		} else if (ctx.getChild(1).getText().equals(">=")) {
-			funktsiooniNimi = "ge";
-		} else if (ctx.getChild(1).getText().equals("==")) {
-			funktsiooniNimi = "eq";
-		} else if (ctx.getChild(1).getText().equals("!=")) {
-			funktsiooniNimi = "ne";
-		}
+		String funktsiooniNimi = ctx.getChild(1).getText();
 
 		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
 		parameetrid.add((Avaldis)this.visit(ctx.tehe(0)));
@@ -228,13 +214,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitKorrutamineJagamine(@NotNull TiigrikeelParser.KorrutamineJagamineContext ctx) {
-		String funktsiooniNimi;
-
-		if (ctx.getChild(1).getText().equals("*")) {
-			funktsiooniNimi = "korrutamine";
-		} else {
-			funktsiooniNimi = "jagamine";
-		}
+		String funktsiooniNimi = ctx.getChild(1).getText();
 
 		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
 		parameetrid.add((Avaldis)this.visit(ctx.tehe3()));
@@ -245,13 +225,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitLiitmineLahutamine(@NotNull TiigrikeelParser.LiitmineLahutamineContext ctx) {
-		String funktsiooniNimi;
-
-		if (ctx.getChild(1).getText().equals("+")) {
-			funktsiooniNimi = "liitmine";
-		} else {
-			funktsiooniNimi = "lahutamine";
-		}
+		String funktsiooniNimi = ctx.getChild(0).getText();
 
 		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
 		parameetrid.add((Avaldis)this.visit(ctx.tehe4()));
@@ -299,7 +273,8 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitJärjendiFunktsioon(@NotNull TiigrikeelParser.JärjendiFunktsioonContext ctx) {
-		String funktsiooniNimi = "võtaHulgaElement";
+		//String funktsiooniNimi = "võtaHulgaElement";
+		String funktsiooniNimi = ctx.getChild(1).getText(); // [
 
 		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
 		parameetrid.add((Avaldis)this.visit(ctx.tehe()));

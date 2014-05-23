@@ -11,14 +11,16 @@ import parser.TiigrikeelParser;
 
 public class main {
     public static void main(String[] args) {
-        String input = "1>=9";
+        String input = "tegevus foo(a):\n" +
+		        "a=5\n" +
+		        "b";
         AstNode tree = ASTCreator.createAST(input);
 
-	    String a;
-	    if (true) {
-	        a = "tere";
-	    }
-	    System.out.println(a);
+	    int x=67;
+	    Object y = (Object)x;
+	    Object z = (Object)3;
+
+	    System.out.println("y+z=");
     }
 
 }
