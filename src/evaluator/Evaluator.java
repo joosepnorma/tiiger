@@ -2,133 +2,129 @@ package evaluator;
 
 import ast.*;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Evaluator {
-	//protected Map<String, Avaldis> väärtused;
 	private Map<String, FunktsiooniDeklaratsioon> funktsioonid;
 	// Muutuja, kuhu kirjutada väljund
-	protected PrintWriter writer;
-	protected OutputStream out;
+	protected StringBuilder output;
 
-	public Evaluator(Map<String, Avaldis> väärtused, PrintWriter writer, OutputStream out) {
-		//this.väärtused = väärtused;
-		this.writer = writer;
-		this.out = out;
+	public Evaluator(Map<String, FunktsiooniDeklaratsioon> funktsioonid, StringBuilder output) {
+		this.funktsioonid = funktsioonid;
+		this.output = output;
 	}
 
 	public Evaluator() {
 		super();
-		//this.väärtused = new HashMap<String, Avaldis>();
-		this.out = new ByteArrayOutputStream();
-		this.writer = new PrintWriter(out);
-	}
-
-	public Evaluator(Map<String, Avaldis> väärtused, OutputStream out) {
-		//this.väärtused = väärtused;
-		this.out = out;
-		this.writer = new PrintWriter(out);
+		this.funktsioonid = new HashMap<String, FunktsiooniDeklaratsioon>();
+		this.output = new StringBuilder();
 	}
 
 	public Object jooksuta(AstNode node, Map<String, Avaldis> väärtused) throws Exception {
 		if (node instanceof AvaldisLause) {
-			System.out.println("Evaluator.jooksuta -> AvaldisLause");
+			System.out.println("Evaluator.jooksuta - AvaldisLause");
 			return eval((Avaldis)node.getChildren().get(0), väärtused);
 		} else if (node instanceof FunktsiooniDeklaratsioon) {
+			System.out.println("Evaluator.jooksuta - FunktsiooniDeklaratsioon");
 			// Paneme funktsiooni mappi
 			funktsioonid.put(((FunktsiooniDeklaratsioon) node).getFunktsiooniNimi(), (FunktsiooniDeklaratsioon) node);
 		} else if (node instanceof KuiLause) {
+			System.out.println("Evaluator.jooksuta - KuiLause");
 			// Kontrolli, kas on ikka boolean enne
-			if ((boolean)eval(((KuniLause) node).getTingimus(), väärtused)) {
+			Object tingimus = eval(((KuiLause) node).getTingimus(), väärtused);
+			if (!tingimus.getClass().getName().equals("java.lang.Boolean")) {
+				throw new Exception("Kui lause tingimus ei väärtustunud tõeväärtuseks!");
+			}
+			if ((boolean)tingimus) {
 				jooksuta(((KuniLause) node).getSisu(), väärtused);
 			}
 		} else if (node instanceof KuniLause) {
-			// Kui pole boolean, siis viska mingi exception
-			while ((boolean)eval(((KuniLause) node).getTingimus(), väärtused)) {
+			System.out.println("Evaluator.jooksuta - KuniLause");
+			// Kontrolli, kas on ikka boolean enne
+			Object tingimus = eval(((KuiLause) node).getTingimus(), väärtused);
+			if (!tingimus.getClass().getName().equals("java.lang.Boolean")) {
+				throw new Exception("Kuni lause tingimus ei väärtustunud tõeväärtuseks!");
+			}
+			while ((boolean)tingimus) {
 				jooksuta(((KuniLause) node).getSisu(), väärtused);
 			}
 		}  else if (node instanceof LauseteJada) {
+			System.out.println("Evaluator.jooksuta - LauseteJada");
 			// Täidame kõik laused rekursiivselt
 			List<Object> laused = node.getChildren();
 			for (Object lause : laused) {
 				jooksuta((Lause)lause, väärtused);
 			}
 		} else if (node instanceof Omistamine) {
+			System.out.println("Evaluator.jooksuta - Omistamine");
 			// Paneme mappi uue muutuja. Kui juba olemas, siis kirjutame üle
 			väärtused.put(((Omistamine) node).getMuutujaNimi(), ((Omistamine) node).getAvaldis());
 		} else if (node instanceof Programm) {
+			System.out.println("Evaluator.jooksuta - Programm");
 			// Täidame rekursiivselt kõik lausete jadad
 			List<Object> lauseteJadad = node.getChildren();
 			for (Object lauseteJada : lauseteJadad) {
 				jooksuta((LauseteJada)lauseteJada, väärtused);
 			}
 		}
+
+		System.out.println("Jooksuta if-else ei püüdnud ühtegi tippu kinni. Tagastan null");
+		System.out.println("Node klass: " + node.getClass().getName());
 		return null;
 	}
 
 	private Object eval(Avaldis node, Map<String, Avaldis> väärtused) throws Exception {
 		if (node instanceof Literaal) {
+			System.out.println("Evaluator.eval - Literaal");
 			return ((Literaal) node).getVäärtus();
 		} else if (node instanceof Muutuja) {
+			System.out.println("Evaluator.eval - Muutuja");
 			return eval(väärtused.get(((Muutuja) node).getNimi()), väärtused);
 		} else if (node instanceof Funktsioon) {
+			System.out.println("Evaluator.eval - Funktsioon");
 			return täidaFunktsioon((Funktsioon)node, new HashMap<String, Avaldis>(väärtused));
 		} else if (node instanceof Hulk) {
+			System.out.println("Evaluator.eval - Hulk?!");
 			// Ei tea veel
 		}
+		System.out.println("Evaluator.eval - ei püütud midagi");
+		System.out.println("Node klass: " + node.getClass().getName());
 		return null;
 	}
 
 	public Object täidaFunktsioon(Funktsioon fun, Map<String, Avaldis> väärtused) throws Exception {
-		// Paneme funktsiooni parameetrid väärtustesse
-		// Selleks vaatame, mis nimega on n'is parameeter funktsiooni deklaratsioonis ja
-		// lisame ta vastavalt mappi
-		List<String> params = funktsioonid.get(fun.getFunktsiooniNimi()).getParameetrid();
-		List<Avaldis> paramValues = fun.getParameetrid();
-		if (params.size() != paramValues.size()) throw new Exception();
-		for (int i=0; i<params.size(); i++) {
-			väärtused.put(params.get(i), paramValues.get(i));
+		String fNimi = fun.getFunktsiooniNimi();
+		System.out.println("Evaluator.täidaFunktsioon " + fNimi);
+
+		if (fNimi.equals("[")) {
+			// võtaHulgaElement peab olema esimene, sest
+			// selle funktsiooni puhul me ei salvesta väärtustesse midagi juurde
+			String hulgaNimi = ((Muutuja)fun.getParameetrid().get(0)).getNimi();
+			if (!väärtused.containsKey(hulgaNimi)) {
+				throw new Exception("Sellist hulka pole defineeritud");
+			}
+			System.out.println("Evaluator.täidaFunktsioon hulgaNimi: " + hulgaNimi);
+			int n = (Integer) eval(fun.getParameetrid().get(1), väärtused);
+			System.out.println("Evaluator.täidaFunktsioon n=" + n);
+			return eval(võtaHulgaElement(väärtused.get(hulgaNimi), n), väärtused);
 		}
 
 		// Kontrollime, kas fNimi on mõni meie funktsioonidest
-		switch (fun.getFunktsiooniNimi()) {
-			case "+":
-				break;
-			case "-":
-				break;
-			case "*":
-				break;
-			case "/":
-				break;
-			case "unaarneMiinus":
-				break;
-			case "<":
-				break;
-			case ">":
-				break;
-			case ">=":
-				break;
-			case "<=":
-				break;
-			case "==":
-				break;
-			case "!=":
-				break;
-			case "||":
-				break;
-			case "&&":
-				break;
-			case "!":
-				break;
-			case "[": // võtaHulgaElement
-				break;
+		switch (fNimi) {
 			case "lausu":
-				break;
+				Object oLause = eval(fun.getParameetrid().get(0), väärtused);
+				String lause;
+				if (!oLause.getClass().getName().equals("java.lang.String")) {
+					try {
+						lause = String.valueOf(oLause);
+					} catch (Exception e) {
+						throw new Exception("Ma ei oska seda lausuda");
+					}
+				} else {
+					lause = (String) oLause;
+				}
+				lausu(lause);
+				return null;
 			case "loenda":
 				break;
 			case "otsi":
@@ -138,16 +134,226 @@ public class Evaluator {
 			case "välja":
 				break;
 		}
+
+		List<String> tehteMärgid = Arrays.asList("+", "-", "/", "*");
+		List<String> võrdlusOperatsioonid = Arrays.asList("<", "<=", ">", ">=", "==", "!=");
+		List<String> lauseArvutusOperatsioonid = Arrays.asList("||", "&&", "!");
+
+		// Esmalt vaatame, mitu parameetrit meil on
+		if (fun.getParameetrid().size() == 1) {
+			// Unaarsed operatsioonid
+			Object a = eval(fun.getParameetrid().get(0), väärtused);
+			if (a.getClass().getName().equals("java.lang.Integer")) {
+				// Tohib olla vaid unaarneMiinus
+				List<Integer> tegurid = new ArrayList<>((int)a);
+				return arvutaInteger(fNimi, tegurid);
+			} else if (a.getClass().getName().equals("java.lang.Double")) {
+				// Tohib olla vaid unaarneMiinus
+				List<Double> tegurid = new ArrayList<>();
+				tegurid.add((double)a);
+				return arvutaDouble(fNimi, tegurid);
+			} else if (a.getClass().getName().equals("java.lang.Boolean")) {
+				// Saab olla vaid eitus
+				List<Boolean> tegurid = new ArrayList<>();
+				tegurid.add((boolean)a);
+				return arvutaBoolean(fNimi, tegurid);
+			}
+			// Kui siia jõuame, siis on midagi valesti
+			System.out.println("Evaluator.täidaFunktsioon error");
+		} else if (fun.getParameetrid().size() == 2) {
+			// Binaarsed operatsioonid
+			Object a = eval(fun.getParameetrid().get(0), väärtused);
+			Object b = eval(fun.getParameetrid().get(1), väärtused);
+			String aKlass = a.getClass().getName();
+			String bKlass = b.getClass().getName();
+			// Kontrollime tüüpi
+			if (aKlass.equals("java.lang.Integer") && bKlass.equals("java.lang.Integer")) {
+				List<Integer> tegurid = new ArrayList<>();
+				tegurid.add((int) a);
+				tegurid.add((int) b);
+				if (tehteMärgid.contains(fNimi)) {
+					return arvutaInteger(fNimi, tegurid);
+				} else if (võrdlusOperatsioonid.contains(fNimi)) {
+					return võrdleInteger(fNimi, tegurid);
+				}
+				// Siia ei tohiks jõuda
+				System.out.println("Evaluator.täidaFunktsioon error");
+			} else if (aKlass.equals("java.lang.Double") && bKlass.equals("java.lang.Double")) {
+				List<Double> tegurid = new ArrayList<>();
+				tegurid.add((double) a);
+				tegurid.add((double) b);
+				if (tehteMärgid.contains(fNimi)) {
+					return arvutaDouble(fNimi, tegurid);
+				} else if (võrdlusOperatsioonid.contains(fNimi)) {
+					return võrdleDouble(fNimi, tegurid);
+				}
+			} else if (aKlass.equals("java.lang.Boolean") && bKlass.equals("java.lang.Boolean")) {
+				List<Boolean> tegurid = new ArrayList<>();
+				tegurid.add((boolean) a);
+				tegurid.add((boolean) b);
+				if (lauseArvutusOperatsioonid.contains(fNimi)) {
+					return arvutaBoolean(fNimi, tegurid);
+				}
+				// Siia ei tohiks jõuda
+				System.out.println("Evaluator.täidaFunktsioon error");
+			} else if (aKlass.equals("java.lang.String") && bKlass.equals("java.lang.String")) {
+				List<String> tegurid = new ArrayList<>();
+				tegurid.add((String) a);
+				tegurid.add((String) b);
+				if (tehteMärgid.contains(fNimi)) {
+					return arvutaString(fNimi, tegurid);
+				}
+				// Siia ei tohiks jõuda
+				System.out.println("Evaluator.täidaFunktsioon error");
+			} else if (aKlass.equals("java.lang.Integer") && bKlass.equals("java.lang.Double") ||
+					aKlass.equals("java.lang.Double") && bKlass.equals("java.lang.Integer")) {
+				List<Double> tegurid = new ArrayList<>();
+				tegurid.add((Double) a);
+				tegurid.add((Double) b);
+				if (tehteMärgid.contains(fNimi)) {
+					return arvutaDouble(fNimi, tegurid);
+				} else if (võrdlusOperatsioonid.contains(fNimi)) {
+					return võrdleDouble(fNimi, tegurid);
+				}
+				// Siia ei tohiks jõuda
+				System.out.println("Evaluator.täidaFunktsioon error");
+			}
+		}
+
+
+		// Kontrollime, kas selline funktsioon üldse leidub
+		if (!funktsioonid.containsKey(fNimi)) {
+			throw new Exception("Funktsiooni ei ole defineeritud");
+		}
+
+		// Paneme funktsiooni parameetrid väärtustesse
+		// Selleks vaatame, mis nimega on n'is parameeter funktsiooni deklaratsioonis ja
+		// lisame ta vastavalt mappi
+		List<String> params = funktsioonid.get(fNimi).getParameetrid();
+		List<Avaldis> paramValues = fun.getParameetrid();
+		if (params.size() != paramValues.size()) throw new Exception();
+		for (int i=0; i<params.size(); i++) {
+			väärtused.put(params.get(i), paramValues.get(i));
+		}
+
 		// Kui läks kõigist kontrollidest läbi, siis läheme lihtsalt funktsiooni sisse
 		return jooksuta(fun, väärtused);
 	}
 
-
-	public OutputStream getOut() {
-		return out;
+	public void lausu(String s) {
+		System.out.println("Evaluator.lausu " + s);
+		output.append(s);
+		output.append("\n");
 	}
 
-	public void lausu(String s) {
-		writer.write(s);
+	private Integer arvutaInteger(String tehe, List<Integer> tegurid) {
+		switch (tehe) {
+			case "+":
+				return tegurid.get(0) + tegurid.get(1);
+			case "-":
+				if (tegurid.size() == 1) {
+					return (-1)*tegurid.get(0);
+				} else {
+					return tegurid.get(0) - tegurid.get(1);
+				}
+			case "*":
+				return tegurid.get(0) * tegurid.get(1);
+			case "/":
+				return tegurid.get(0) / tegurid.get(1);
+		}
+		System.out.println("Evaluator.arvutaInteger vale tehtetüüp: " + tehe);
+		return null;
+	}
+
+	private Boolean võrdleInteger(String võrdlus, List<Integer> tegurid) {
+		switch (võrdlus) {
+			case "<":
+				return tegurid.get(0) < tegurid.get(1);
+			case "<=":
+				return tegurid.get(0) <= tegurid.get(1);
+			case ">":
+				return tegurid.get(0) > tegurid.get(1);
+			case ">=":
+				return tegurid.get(0) >= tegurid.get(1);
+			case "==":
+				return tegurid.get(0) == tegurid.get(1);
+			case "!=":
+				return tegurid.get(0) != tegurid.get(1);
+		}
+		System.out.println("Evaluator.võrdleInteger vale võrdlustehe: " + võrdlus);
+		return null;
+	}
+
+	private Double arvutaDouble(String tehe, List<Double> tegurid) {
+		switch (tehe) {
+			case "+":
+				return tegurid.get(0) + tegurid.get(1);
+			case "-":
+				if (tegurid.size() == 1) {
+					return (-1)*tegurid.get(0);
+				} else {
+					return tegurid.get(0) - tegurid.get(1);
+				}
+			case "*":
+				return tegurid.get(0) * tegurid.get(1);
+			case "/":
+				return tegurid.get(0) / tegurid.get(1);
+		}
+		System.out.println("Evaluator.arvutaDouble vale tehe: " + tehe);
+		return null;
+	}
+
+	private Boolean võrdleDouble(String võrdlus, List<Double> tegurid) {
+		switch (võrdlus) {
+			case "<":
+				return tegurid.get(0) < tegurid.get(1);
+			case "<=":
+				return tegurid.get(0) <= tegurid.get(1);
+			case ">":
+				return tegurid.get(0) > tegurid.get(1);
+			case ">=":
+				return tegurid.get(0) >= tegurid.get(1);
+			case "==":
+				return tegurid.get(0) == tegurid.get(1);
+			case "!=":
+				return tegurid.get(0) != tegurid.get(1);
+		}
+		System.out.println("Evaluator.võrdleDouble vale võrdlustehe: " + võrdlus);
+		return null;
+	}
+
+	private String arvutaString(String tehe, List<String> tegurid) {
+		switch (tehe) {
+			case "+":
+				return tegurid.get(0) + tegurid.get(1);
+		}
+		System.out.println("Evaluator.arvutaString vale tehe: " + tehe);
+		return null;
+	}
+
+	private boolean arvutaBoolean(String tehe, List<Boolean> tegurid) {
+		switch (tehe) {
+			case "||":
+				return tegurid.get(0) || tegurid.get(1);
+			case "&&":
+				return tegurid.get(0) && tegurid.get(1);
+			case "!":
+				return !tegurid.get(0);
+		}
+		System.out.println("Evaluator.arvutaBoolean vale tehe: " + tehe);
+		return false;
+	}
+
+	private Avaldis võtaHulgaElement(Avaldis hulk, int n) throws Exception {
+		System.out.println("Evaluator.võtaHulgaElement");
+		if (hulk instanceof Hulk) {
+			return ((Hulk) hulk).getElemendid().get(n);
+		}
+
+		throw new Exception("võtaHulgaElement ootas hulka, aga sai midagi muud");
+	}
+
+	public String getOutput() {
+		return output.toString();
 	}
 }

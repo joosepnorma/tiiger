@@ -59,7 +59,6 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitAvaldis(@NotNull TiigrikeelParser.AvaldisContext ctx) {
-		System.out.println("ASTCreationVisitor.visitAvaldis");
 		Avaldis avaldis = null;
 
 		if (ctx.hulk() != null) {
@@ -67,9 +66,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 		} else if (ctx.lausearvutus() != null) {
 			avaldis = (Avaldis)this.visitLausearvutus(ctx.lausearvutus());
 		} else if (ctx.tehe() != null) {
-			System.out.println("visitAvaldis -> tehe");
 			avaldis = (Avaldis)this.visitTehe(ctx.tehe());
-			System.out.println("visitAvaldis <- tehe");
 		}
 
 		return avaldis;
@@ -132,7 +129,6 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitLauseteJada(@NotNull TiigrikeelParser.LauseteJadaContext ctx) {
-		System.out.println("ASTCreationVisitor.visitLauseteJada");
 		List<Lause> tulemus = new ArrayList<Lause>();
 
 		List<TiigrikeelParser.LauseContext> laused = ctx.lause();
@@ -145,7 +141,6 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitLause(@NotNull TiigrikeelParser.LauseContext ctx) {
-		System.out.println("ASTCreationVisitor.visitLause");
 		if (ctx.lauseteJada() != null) {
 			return this.visitLauseteJada(ctx.lauseteJada());
 		} else if (ctx.avaldis() != null) {
@@ -204,7 +199,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitUnaarneMiinus(@NotNull TiigrikeelParser.UnaarneMiinusContext ctx) {
-		String funktsiooniNimi = "unaarneMiinus";
+		String funktsiooniNimi = "-";
 
 		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
 		parameetrid.add((Avaldis)this.visit(ctx.tehe2()));
@@ -254,10 +249,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 			parameetrid.add((Avaldis)this.visit(muutujad.get(i)));
 		}
 
-		// Kontrollime, kas nimi vastab mõnele meie funktsioonile
 		return new Funktsioon(funktsiooniNimi, parameetrid);
-
-		// kui ei, siis teeme UusFunktsiooni
 	}
 
 	@Override
@@ -273,11 +265,11 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitJärjendiFunktsioon(@NotNull TiigrikeelParser.JärjendiFunktsioonContext ctx) {
-		//String funktsiooniNimi = "võtaHulgaElement";
-		String funktsiooniNimi = ctx.getChild(1).getText(); // [
+		String funktsiooniNimi = ctx.getChild(1).getText();
 
 		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
-		parameetrid.add((Avaldis)this.visit(ctx.tehe()));
+		parameetrid.add(new Muutuja(ctx.MuutujaNimi().getText()));
+		parameetrid.add((Avaldis) this.visit(ctx.tehe()));
 
 		return new Funktsioon(funktsiooniNimi, parameetrid);
 	}
