@@ -7,7 +7,8 @@ import java.util.HashMap;
 
 public class main {
     public static void main(String[] args) {
-        String input = "lausu(\"a\"==\"a\")";
+        String input = "a=(1, \"vorst\", 2.7)\n" +
+		        "lausu(a)";
         AstNode tree = ASTCreator.createAST(input);
 	    Evaluator e = new Evaluator();
 	    try {

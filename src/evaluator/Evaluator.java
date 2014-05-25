@@ -150,6 +150,24 @@ public class Evaluator {
 					} else {
 						lause = "ei";
 					}
+				} else if (oLause instanceof List) {
+					// Ehita tsükliga sisu ja saada lausu funktsioonile
+					StringBuilder sb = new StringBuilder();
+					sb.append("(");
+					List<Avaldis> elemendid = (List) oLause;
+					for (int i=0; i<elemendid.size(); i++) {
+						Object el = eval(elemendid.get(i), väärtused);
+						if (el instanceof String) {
+							sb.append("\"");
+							sb.append(el);
+							sb.append("\"");
+						} else {
+							sb.append(el);
+						}
+						if (i!=elemendid.size()-1) sb.append(", ");
+					}
+					sb.append(")");
+					lause = sb.toString();
 				} else if (!(oLause instanceof String)) {
 					try {
 						lause = String.valueOf(oLause);
