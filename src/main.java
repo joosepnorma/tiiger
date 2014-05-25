@@ -7,7 +7,10 @@ import java.util.HashMap;
 
 public class main {
     public static void main(String[] args) {
-        String input = "b=(0,1,2)\nlausu(b[1])";
+        String input = "tegevus foo(a):\n" +
+		        "tagasi(a)\n" +
+		        "\n" +
+		        "lausu(foo(\"tere\"))";
         AstNode tree = ASTCreator.createAST(input);
 	    Evaluator e = new Evaluator();
 	    try {

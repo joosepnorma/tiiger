@@ -28,6 +28,7 @@ public class Evaluator {
 			System.out.println("Evaluator.jooksuta - FunktsiooniDeklaratsioon");
 			// Paneme funktsiooni mappi
 			funktsioonid.put(((FunktsiooniDeklaratsioon) node).getFunktsiooniNimi(), (FunktsiooniDeklaratsioon) node);
+			return null;
 		} else if (node instanceof KuiLause) {
 			System.out.println("Evaluator.jooksuta - KuiLause");
 			// Kontrolli, kas on ikka boolean enne
@@ -36,7 +37,7 @@ public class Evaluator {
 				throw new Exception("Kui lause tingimus ei väärtustunud tõeväärtuseks!");
 			}
 			if ((boolean)tingimus) {
-				jooksuta(((KuniLause) node).getSisu(), väärtused);
+				return jooksuta(((KuniLause) node).getSisu(), väärtused);
 			}
 		} else if (node instanceof KuniLause) {
 			System.out.println("Evaluator.jooksuta - KuniLause");
@@ -45,27 +46,34 @@ public class Evaluator {
 			if (!tingimus.getClass().getName().equals("java.lang.Boolean")) {
 				throw new Exception("Kuni lause tingimus ei väärtustunud tõeväärtuseks!");
 			}
-			while ((boolean)tingimus) {
-				jooksuta(((KuniLause) node).getSisu(), väärtused);
+			Object tagastus = null;
+			while ((boolean)tingimus && tagastus == null) {
+				tagastus = jooksuta(((KuniLause) node).getSisu(), väärtused);
 			}
 		}  else if (node instanceof LauseteJada) {
 			System.out.println("Evaluator.jooksuta - LauseteJada");
 			// Täidame kõik laused rekursiivselt
 			List<Object> laused = node.getChildren();
+			Object tagastus = null;
 			for (Object lause : laused) {
-				jooksuta((Lause)lause, väärtused);
+				tagastus = jooksuta((Lause)lause, väärtused);
+				if (tagastus != null) break;
 			}
+			return tagastus;
 		} else if (node instanceof Omistamine) {
 			System.out.println("Evaluator.jooksuta - Omistamine");
 			// Paneme mappi uue muutuja. Kui juba olemas, siis kirjutame üle
 			väärtused.put(((Omistamine) node).getMuutujaNimi(), ((Omistamine) node).getAvaldis());
+			return null;
 		} else if (node instanceof Programm) {
 			System.out.println("Evaluator.jooksuta - Programm");
 			// Täidame rekursiivselt kõik lausete jadad
 			List<Object> lauseteJadad = node.getChildren();
+			Object tagastus = null;
 			for (Object lauseteJada : lauseteJadad) {
-				jooksuta((LauseteJada)lauseteJada, väärtused);
+				tagastus = jooksuta((LauseteJada)lauseteJada, väärtused);
 			}
+			return 1;
 		}
 
 		System.out.println("Jooksuta if-else ei püüdnud ühtegi tippu kinni. Tagastan null");
@@ -131,8 +139,9 @@ public class Evaluator {
 				break;
 			case "ründa":
 				break;
-			case "välja":
-				break;
+			case "tagasi":
+				if (fun.getParameetrid().size() != 1) throw new Exception("Argumentide arv vale");
+				return eval(fun.getParameetrid().get(0), väärtused);
 		}
 
 		List<String> tehteMärgid = Arrays.asList("+", "-", "/", "*");
@@ -141,11 +150,13 @@ public class Evaluator {
 
 		// Esmalt vaatame, mitu parameetrit meil on
 		if (fun.getParameetrid().size() == 1) {
+			System.out.println("Unaarne operatsioon");
 			// Unaarsed operatsioonid
 			Object a = eval(fun.getParameetrid().get(0), väärtused);
 			if (a.getClass().getName().equals("java.lang.Integer")) {
 				// Tohib olla vaid unaarneMiinus
-				List<Integer> tegurid = new ArrayList<>((int)a);
+				List<Integer> tegurid = new ArrayList<>();
+				tegurid.add((int)a);
 				return arvutaInteger(fNimi, tegurid);
 			} else if (a.getClass().getName().equals("java.lang.Double")) {
 				// Tohib olla vaid unaarneMiinus
@@ -161,13 +172,16 @@ public class Evaluator {
 			// Kui siia jõuame, siis on midagi valesti
 			System.out.println("Evaluator.täidaFunktsioon error");
 		} else if (fun.getParameetrid().size() == 2) {
+			System.out.println("Binaarne operatsioon " + fNimi);
 			// Binaarsed operatsioonid
 			Object a = eval(fun.getParameetrid().get(0), väärtused);
 			Object b = eval(fun.getParameetrid().get(1), väärtused);
 			String aKlass = a.getClass().getName();
 			String bKlass = b.getClass().getName();
+			System.out.println("Tüübikontroll");
 			// Kontrollime tüüpi
 			if (aKlass.equals("java.lang.Integer") && bKlass.equals("java.lang.Integer")) {
+				System.out.println("Mõlemad int, tehe " + fNimi);
 				List<Integer> tegurid = new ArrayList<>();
 				tegurid.add((int) a);
 				tegurid.add((int) b);
@@ -237,7 +251,7 @@ public class Evaluator {
 		}
 
 		// Kui läks kõigist kontrollidest läbi, siis läheme lihtsalt funktsiooni sisse
-		return jooksuta(fun, väärtused);
+		return jooksuta(funktsioonid.get(fNimi).getSisu(), väärtused);
 	}
 
 	public void lausu(String s) {
@@ -251,6 +265,7 @@ public class Evaluator {
 			case "+":
 				return tegurid.get(0) + tegurid.get(1);
 			case "-":
+				System.out.println("Lahutamine int, tegurite arv: " + tegurid.size());
 				if (tegurid.size() == 1) {
 					return (-1)*tegurid.get(0);
 				} else {
