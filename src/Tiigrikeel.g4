@@ -18,10 +18,10 @@ lause
     ;
 
 kuiLause
-    :   'kui' '(' avaldis ')' ':' '\n' lauseteJada '\n'?
-    |   'kui' '(' avaldis ')' ':' lause
-    |   'kui' avaldis ':' '\n' lauseteJada '\n'?
-    |   'kui' avaldis ':' lause
+    :   'kui' '(' lausearvutus ')' ':' '\n' lauseteJada '\n'?
+    |   'kui' '(' lausearvutus ')' ':' lause
+    |   'kui' lausearvutus ':' '\n' lauseteJada '\n'?
+    |   'kui' lausearvutus ':' lause
     ;
 
 kuniLause
@@ -72,7 +72,8 @@ tehe1
     ;
 
 tehe0
-    :   MuutujaNimi                                         #MuutujaNimiR
+    :   Tõeväärtus                                          #TõeväärtusR2
+    |   MuutujaNimi                                         #MuutujaNimiR
     |   Täisarv                                             #TäisarvR
     |   Komaga                                              #KomagaR
     |   Sõne                                                #SõneR
@@ -95,7 +96,7 @@ lausearvutus3
 lausearvutus2
     :   '!' lausearvutus2                                   #Eitus
     |   '(' lausearvutus ')'                                #SulustatudLausearvutus
-    |   Tõeväärtus                                          #TõeväärtusR
+//    |   Tõeväärtus                                          #TõeväärtusR
     |   lausearvutus1                                       #TriviaalneLausearvutus1
     ;
 

@@ -33,12 +33,14 @@ public class Evaluator {
 			System.out.println("Evaluator.jooksuta - KuiLause");
 			// Kontrolli, kas on ikka boolean enne
 			Object tingimus = eval(((KuiLause) node).getTingimus(), väärtused);
+			Object tagastus = null;
 			if (!(tingimus instanceof Boolean)) {
 				throw new Exception("Kui lause tingimus ei väärtustunud tõeväärtuseks!");
 			}
 			if ((boolean)tingimus) {
-				return jooksuta(((KuiLause) node).getSisu(), väärtused);
+				tagastus = jooksuta(((KuiLause) node).getSisu(), väärtused);
 			}
+			return tagastus;
 		} else if (node instanceof KuniLause) {
 			System.out.println("Evaluator.jooksuta - KuniLause");
 			// Kontrolli, kas on ikka boolean enne
@@ -50,7 +52,7 @@ public class Evaluator {
 			while ((boolean) (eval(((KuniLause) node).getTingimus(), väärtused)) && tagastus == null) {
 				tagastus = jooksuta(((KuniLause) node).getSisu(), väärtused);
 			}
-			if (tagastus != null) return tagastus;
+			return tagastus;
 		}  else if (node instanceof LauseteJada) {
 			System.out.println("Evaluator.jooksuta - LauseteJada");
 			// Täidame kõik laused rekursiivselt
@@ -102,6 +104,8 @@ public class Evaluator {
 			return ((Literaal) node).getVäärtus();
 		} else if (node instanceof Muutuja) {
 			System.out.println("Evaluator.eval - Muutuja");
+			String muutujaNimi = ((Muutuja) node).getNimi();
+			if (!väärtused.containsKey(muutujaNimi)) { throw new Exception("Muutujat nimega " + muutujaNimi + " ei ole selles skoobis defineeritud."); }
 			return eval(väärtused.get(((Muutuja) node).getNimi()), väärtused);
 		} else if (node instanceof Funktsioon) {
 			System.out.println("Evaluator.eval - Funktsioon");
