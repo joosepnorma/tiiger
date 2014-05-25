@@ -1,0 +1,15 @@
+Need tuleks enne parsimist sisendi ette panna:
+
+TASE 10
+Korv=("seen1", "seen2", "kukeseen", "kärbseseen")\n
+
+TASE 12
+Riiul=("muna")\nKapp=("piim")\n
+
+TASE 13
+Parv=("Leesi", "Leedi", "Lontu", "Londu")\n
+
+TASE 14
+Heinakuhi=("hein", "muru", "rohi")\n
+
+TASE 15

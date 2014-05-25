@@ -47,7 +47,7 @@ väljund: ründa("Metslane") \n ründa("Nipitiri") || ründa("Nipitiri") \n ründa("M
 uuri(): "Draakonite nimed on Metslane ja Nipitiri, ründamisel kirjuta need sõnena!"
 
 TASE 12
-väljund: ründa("jahu")
+väljund: kakle("jahu")
 uuri(): "Siin köögis on kaks hulka, riiul ja kapp. Otsida saab nii: x=otsi(riiul, "muna") \n lausu(x) ning saad teada, kas riiulis leidub muna"
 
 TASE 13
