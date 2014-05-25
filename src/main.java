@@ -7,7 +7,9 @@ import java.util.HashMap;
 
 public class main {
     public static void main(String[] args) {
-        String input = "lausu(1+1.1)";
+        String input = "a=1.09\n" +
+		        "b=\" tiigrit\"\n" +
+		        "lausu(a+b+\" läks loomaaeda\")";
         AstNode tree = ASTCreator.createAST(input);
 	    Evaluator e = new Evaluator();
 	    try {
@@ -15,7 +17,8 @@ public class main {
 	    } catch (Exception e1) {
 		    e1.printStackTrace();
 	    }
-	    System.out.println("Väljund: " + e.getOutput());
+	    System.out.println("Väljund: ");
+	    System.out.println(e.getOutput());
 
     }
 

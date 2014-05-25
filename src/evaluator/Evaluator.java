@@ -157,10 +157,27 @@ public class Evaluator {
 				return eval(fun.getParameetrid().get(0), väärtused);
 		}
 
+		if (funktsioonid.containsKey(fNimi)) {
+			// Paneme funktsiooni parameetrid väärtustesse
+			// Selleks vaatame, mis nimega on n'is parameeter funktsiooni deklaratsioonis ja
+			// lisame ta vastavalt mappi
+			List<String> params = funktsioonid.get(fNimi).getParameetrid();
+			List<Avaldis> paramValues = fun.getParameetrid();
+			if (params.size() != paramValues.size()) throw new Exception();
+			for (int i=0; i<params.size(); i++) {
+				väärtused.put(params.get(i), paramValues.get(i));
+			}
+
+			// Kui läks kõigist kontrollidest läbi, siis läheme lihtsalt funktsiooni sisse
+			return jooksuta(funktsioonid.get(fNimi).getSisu(), väärtused);
+
+		}
+
 		List<String> tehteMärgid = Arrays.asList("+", "-", "/", "*");
 		List<String> võrdlusOperatsioonid = Arrays.asList("<", "<=", ">", ">=", "==", "!=");
 		List<String> lauseArvutusOperatsioonid = Arrays.asList("||", "&&", "!");
 
+		// Kui oleme siia jõudnud, siis on tegu arvutamisega tõenäoliselt
 		// Esmalt vaatame, mitu parameetrit meil on
 		if (fun.getParameetrid().size() == 1) {
 			System.out.println("Unaarne operatsioon");
@@ -223,15 +240,31 @@ public class Evaluator {
 				}
 				// Siia ei tohiks jõuda
 				System.out.println("Evaluator.täidaFunktsioon error");
-			} else if (a instanceof String && b instanceof String) {
+			} else if (a instanceof String || b instanceof String) {
 				List<String> tegurid = new ArrayList<>();
-				tegurid.add((String) a);
-				tegurid.add((String) b);
-				if (tehteMärgid.contains(fNimi)) {
-					return arvutaString(fNimi, tegurid);
+				String sa;
+				if (!(a instanceof String)) {
+					try {
+						sa = String.valueOf(a);
+					} catch (Exception e) {
+						throw new Exception("Ma ei oska seda lausuda");
+					}
+				} else {
+					sa = (String) a;
 				}
-				// Siia ei tohiks jõuda
-				System.out.println("Evaluator.täidaFunktsioon error");
+				String sb;
+				if (!(b instanceof String)) {
+					try {
+						sb = String.valueOf(b);
+					} catch (Exception e) {
+						throw new Exception("Ma ei oska seda lausuda");
+					}
+				} else {
+					sb = (String) b;
+				}
+				tegurid.add(sa);
+				tegurid.add(sb);
+				return arvutaString(fNimi, tegurid);
 			} else if (a instanceof Integer && b instanceof Double) {
 				System.out.println("Üks on Integer, teine Double");
 				List<Double> tegurid = new ArrayList<>();
@@ -261,24 +294,7 @@ public class Evaluator {
 			}
 		}
 
-
-		// Kontrollime, kas selline funktsioon üldse leidub
-		if (!funktsioonid.containsKey(fNimi)) {
-			throw new Exception("Funktsiooni ei ole defineeritud");
-		}
-
-		// Paneme funktsiooni parameetrid väärtustesse
-		// Selleks vaatame, mis nimega on n'is parameeter funktsiooni deklaratsioonis ja
-		// lisame ta vastavalt mappi
-		List<String> params = funktsioonid.get(fNimi).getParameetrid();
-		List<Avaldis> paramValues = fun.getParameetrid();
-		if (params.size() != paramValues.size()) throw new Exception();
-		for (int i=0; i<params.size(); i++) {
-			väärtused.put(params.get(i), paramValues.get(i));
-		}
-
-		// Kui läks kõigist kontrollidest läbi, siis läheme lihtsalt funktsiooni sisse
-		return jooksuta(funktsioonid.get(fNimi).getSisu(), väärtused);
+		throw new Exception("Funktsiooni ei ole defineeritud");
 	}
 
 	public void lausu(String s) {

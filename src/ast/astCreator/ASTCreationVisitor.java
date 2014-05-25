@@ -23,7 +23,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitSõneR(@NotNull TiigrikeelParser.SõneRContext ctx) {
-		return new SõneLiteraal(ctx.getText());
+		return new SõneLiteraal(ctx.getText().substring(1, ctx.getText().length()-1));
 	}
 
 	@Override
