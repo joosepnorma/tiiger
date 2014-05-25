@@ -43,29 +43,43 @@ väljund: x=loenda(Korv) \n lausu(x)
 uuri(): "Et korvis leiduvate seente arvu loendada, kasuta funktsiooni loenda(Korv)"
 
 TASE 11
-väljund: ründa(Metslane) \n ründa(Nipitiri) || ründa(Nipitiri) \n ründa(Metslane)
-uuri(): "Draakonite nimed on Metslane ja Nipitiri"
+väljund: ründa("Metslane") \n ründa("Nipitiri") || ründa("Nipitiri") \n ründa("Metslane")
+uuri(): "Draakonite nimed on Metslane ja Nipitiri, ründamisel kirjuta need sõnena!"
 
 TASE 12
-väljund: ründa(jahu)
+väljund: ründa("jahu")
 uuri(): "Siin köögis on kaks hulka, riiul ja kapp. Otsida saab nii: x=otsi(riiul, "muna") \n lausu(x) ning saad teada, kas riiulis leidub muna"
 
 TASE 13
-väljund: 
-uuri(): Elevandihulga nimi on Parv. Loendamiseks saad kasutada funktsiooni loenda(), Lontu otsimiseks aga funktsiooni Otsi(). PS: Lontu peab esinema sõnena!"
+väljund: lausu(2, jah)
+uuri(): "Elevandihulga nimi on Parv. Loendamiseks saad kasutada funktsiooni loenda(), Lontu otsimiseks aga funktsiooni Otsi(). PS: Lontu peab esinema sõnena!"
 
 TASE 14
+väljund: lausu("Ainult hein")
+uuri(): "Sul läheb vaja funktsiooni otsi()."
 
 TASE 15
+väljund: 10 korda: lausu("Tiigrikeel") \n
+uuri(): "Tiigrikeel on kõige magusam."
 
 TASE 16
+väljund: lausu("või on lahkem kui ja")
+uuri(): "Ekraanile peaks ilmuma vaid üks lause."
 
 TASE 17
+väljund: lausu("Tere hommikust " + "Tiiger")
+uuri: "Siin võib abiks tulla 7. taseme meenutamine."
 
 TASE 18
+väljund: lausu(3)
+uuri(): "Proovi ise erinevaid kombinatsioone."
 
 TASE 19
+väljund: 5 korda lausu("Appi") \n
+uuri(): "Hulga nimi on Mets ja kõigi kollide nimi on Mäger"
 
 TASE 20
+väljund: lausu("Automaadid, keeled ja translaatorid")
+uuri(): "Vaata ka https://programmeerimine.cs.ut.ee ja https://courses.cs.ut.ee/2014/AKT/"
 
 
