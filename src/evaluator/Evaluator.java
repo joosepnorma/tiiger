@@ -275,6 +275,10 @@ public class Evaluator {
 				}
 				// Siia ei tohiks jõuda
 				System.out.println("Evaluator.täidaFunktsioon error");
+			} else if (a instanceof Integer && b instanceof String && fNimi.equals("*")) {
+				return korrutaString((String) b, (int) a);
+			} else if (a instanceof String && b instanceof Integer && fNimi.equals("*")) {
+				return korrutaString((String) a, (int) b);
 			} else if (a instanceof String || b instanceof String) {
 				List<String> tegurid = new ArrayList<>();
 				String sa;
@@ -437,6 +441,14 @@ public class Evaluator {
 				return tegurid.get(0) + tegurid.get(1);
 		}
 		throw new Exception("Sõned ei toeta tehet " + tehe);
+	}
+
+	private String korrutaString(String s, int n) {
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i<n; i++) {
+			sb.append(s);
+		}
+		return sb.toString();
 	}
 
 	private boolean arvutaBoolean(String tehe, List<Boolean> tegurid) throws Exception {
