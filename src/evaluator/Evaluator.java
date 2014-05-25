@@ -303,7 +303,11 @@ public class Evaluator {
 				}
 				tegurid.add(sa);
 				tegurid.add(sb);
-				return arvutaString(fNimi, tegurid);
+				if (tehteMärgid.contains(fNimi)) {
+					return arvutaString(fNimi, tegurid);
+				} else if (võrdlusOperatsioonid.contains(fNimi)) {
+					return võrdleString(fNimi, tegurid);
+				}
 			} else if (a instanceof Integer && b instanceof Double) {
 				System.out.println("Üks on Integer, teine Double");
 				List<Double> tegurid = new ArrayList<>();
@@ -449,6 +453,16 @@ public class Evaluator {
 			sb.append(s);
 		}
 		return sb.toString();
+	}
+
+	private Boolean võrdleString(String tehe, List<String> tegurid) throws Exception {
+		switch (tehe) {
+			case "==":
+				return tegurid.get(0).equals(tegurid.get(1));
+			case "!=":
+				return !tegurid.get(0).equals(tegurid.get(1));
+		}
+		throw new Exception("Stringe ei saa sedasi võrrelda (" + tehe + ")");
 	}
 
 	private boolean arvutaBoolean(String tehe, List<Boolean> tegurid) throws Exception {
