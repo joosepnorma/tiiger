@@ -37,14 +37,13 @@ public class Lahendused {
 		}
 		if (lvl == 3) {
 			if (output.indexOf(".") > 0) {
-				if (Float.parseFloat(output) == 1.75
-						|| input.startsWith("lausu(1.75)")) {
+				if (Float.parseFloat(output) == 1.75) {
 					return true;
 				}
 			}
 		}
 		if (lvl == 4) {
-			if (tree.contains("Hulk")) {
+			if (tree.contains("Hulk") && tree.contains("lausu")) {
 				return true;
 			}
 
@@ -64,7 +63,6 @@ public class Lahendused {
 			if (input.contains("sisu=\"jätka\"\nlausu(sisu)")){
 				return true;
 			}
-
 		}
 		if (lvl == 8) {
 			if (tree.contains("Omistamine") && tree.contains("jäätis") &&
@@ -72,15 +70,22 @@ public class Lahendused {
 					tree.indexOf("Omistamine")!=tree.lastIndexOf("Omistamine")){
 				return true;
 			}
-
 		}
 		if (lvl == 9) {
-
+			if (input.contains("lausu(\"funktsioon\")")){
+				return true;
+			}
 		}
 		if (lvl == 10) {
+			if (tree.contains("loenda\", [Muutuja(\"Korv\")") && tree.contains("lausu\", [Muutuja") && tree.contains("Omistamine")){
+				return true;
+			}
 
 		}
 		if (lvl == 11) {
+			if (input.contains("kakle(\"Nipitiri\")") && input.contains("kakle(\"Metslane\")")){
+				return true;
+			}
 
 		}
 		if (lvl == 12) {

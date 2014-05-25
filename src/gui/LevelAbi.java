@@ -15,7 +15,7 @@ String[] abilaused = {"Kuule häkker, selles tasemes pole vaja midagi välja uur
 		"Et lausuda üht muutujat 17 korda järjest, peaks kirjutama lausu(muutujanimi*17)!",
 		"Jätkamiseks lausu sõne \"funktsioon\"",
 		"Et korvis leiduvate seente arvu loendada, kasuta funktsiooni loenda(Korv)",
-		"Draakonite nimed on Metslane ja Nipitiri",
+		"Draakonite nimed on Metslane ja Nipitiri, ründamisel kirjuta need sõnena!",
 		"Siin köögis on kaks hulka, riiul ja kapp. Otsida saab nii: x=otsi(riiul, muna) \n lausu(x) ning saad teada, kas riiulis leidub muna"};
 
 public void uuri(JTextPane output, int lvl){

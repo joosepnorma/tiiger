@@ -27,15 +27,18 @@ class RunListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-
-		AstNode tree = ASTCreator.createAST(inputTextPane.getText());
+		String input = inputTextPane.getText();
 		Evaluator e = new Evaluator();
 		if (ae.getActionCommand().equals("harjuta")) {
+			AstNode tree = ASTCreator.createAST(input);
 			EvalThread jookse = new EvalThread(tree, e, inputTextPane,
 					outputTextPane);
 			MainGUI.exec.submit(jookse);
 		} else {
 			lvl = Integer.parseInt(ae.getActionCommand());
+			String[] muutujad = Muutujad.getMuutujad();
+			input = muutujad[lvl] + input;
+			AstNode tree = ASTCreator.createAST(input);
 			if (inputTextPane.getText().indexOf("uuri()") > 0
 					|| inputTextPane.getText().startsWith("uuri()")) {
 				abi.uuri(outputTextPane, lvl);

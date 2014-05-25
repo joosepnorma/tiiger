@@ -126,12 +126,15 @@ public class MangGUI extends JPanel {
 		int level = 1;
 		int[] saveFile;
 		public void setLevel(int newLevel){
+			saveFile = GUIUtils.readSaveFile();
 			level = newLevel;
 			runButton.setActionCommand(String.valueOf(level));
 			if (level == saveFile.length || saveFile[level+1] == 0) {
 				nextButton.setEnabled(false);
+				nextButton.setBackground(Color.gray);
 			} else {
 				nextButton.setEnabled(true);
+				nextButton.setBackground(Color.green);
 			}
 			if (level == 0){
 				prevButton.setEnabled(false);

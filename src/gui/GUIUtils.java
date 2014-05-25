@@ -26,7 +26,7 @@ public class GUIUtils {
 			}
 			System.out.println("new savefile created");
 		} else {
-			System.out.println("savefile loaded");
+			//System.out.println("savefile loaded");
 		}
 
 		return saveFile;
