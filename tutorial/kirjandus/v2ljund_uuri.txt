@@ -1,0 +1,52 @@
+TASE 0
+ei vaja mingisugust väljundit, tase on kohe läbitav
+uuri() kuvab ekraanile: "Kuule häkker, selles tasemes pole vaja midagi välja uurida!"
+
+TASE 1
+väljund: lausu("suvalinesõne")
+uuri() kuvab ekraanile: "Peaksid kirjutama midagi sellist: lausu("Muri")"
+
+TASE 2
+väljund: lausu(10+10) \n lausu("10+10") || lausu("10+10") \n lausu(10+10)
+uuri() kuvab  ekraanile: "Kirjuta laused eraldi ridadele, peaksid nägema, et ühel juhul tuleb ekraanile 10+10, teisel juhul 20."
+
+TASE 3
+väljund: lausu(1,75) || lausu(suvalinetehemisannabtulemuseks 1,75)
+uuri() kuvab ekraanile: "Kui lausud mõne tehte, näiteks korrutamise või lahutamise, arvutab arvuti sinu eest tulemuse välja."
+
+TASE 4
+väljund: lausu((suvalinejärjend))
+uuri(): "Järjenditega õpid hiljem erinevaid lahedaid asju tegema."
+
+TASE 5
+väljund: lausu(jah) \n lausu(jah) \n lausu(jah) \n lausu(ei) \n lausu(ei) \n lausu(ei) #või midagi ekvivalentset
+uuri(): "Kui oled hädas, siis kolm tõest lauset on lausu(2>1), lausu(3<4) ja lausu(4==4). Kirjuta need eraldi ridadele ja nende alla veel 3 väärat lauset."
+
+TASE 6
+väljund: suvalinemuutujanimi=suvalineväärtus \n lausu(suvalinemuutujanimi)
+uuri(): "Tee näiteks muutuja x="Kassipoeg" ja lausu x!"
+
+TASE 7
+väljund: sisu="jätka" \n lausu(sisu)
+uuri(): "Muutuja loomine käib samamoodi nagu eelmisel tasemel."
+
+TASE 8
+väljund: suvalinemuutuja="jäätis" \n lausu(suvalinemuutuja*17) \n teinemuutuja=("suvalinesõne1", "ssõne2", "ssõne3") \n lausu(teinemuutuja)
+uuri(): "Et lausuda üht muutujat 17 korda järjest, peaks kirjutama lausu(muutujanimi*17)!"
+
+TASE 9
+väljund: lausu("funktsioon")
+uuri(): "Jätkamiseks lausu sõne "funktsioon""
+
+TASE 10
+väljund: x=loenda(Korv) \n lausu(x)
+uuri(): "Et korvis leiduvate seente arvu loendada, kasuta funktsiooni loenda(Korv)"
+
+TASE 11
+väljund: ründa(Metslane) \n ründa(Nipitiri) || ründa(Nipitiri) \n ründa(Metslane)
+uuri(): "Draakonite nimed on Metslane ja Nipitiri"
+
+TASE 12
+väljund: ründa(jahu)
+uuri(): "Siin köögis on kaks hulka, riiul ja kapp. Otsida saab nii: x=otsi(riiul, muna) \n lausu(x) ning saad teada, kas riiulis leidub muna"
+
