@@ -83,6 +83,28 @@ public class Evaluator {
 			}
 			väärtused.put(((Omistamine) node).getMuutujaNimi(), avaldis);
 			return null;
+		} else if (node instanceof Ülekirjutamine) {
+			System.out.println("Evaluator.jooksuta - Ülekirjutamine");
+			Object väärtus = eval(((Ülekirjutamine) node).getUusVäärtus(), väärtused);
+			List<Avaldis> hulkParams = ((Funktsioon) ((Ülekirjutamine) node).getÜlekirjutatav()).getParameetrid();
+			int n = (int) eval(hulkParams.get(1), väärtused);
+			List<Avaldis> hulk = (List) eval(hulkParams.get(0), väärtused);
+			Avaldis avaldis = null;
+			if (väärtus instanceof Integer) {
+				avaldis = (Avaldis) new TäisarvLiteraal((int) väärtus);
+			} else if (väärtus instanceof Double) {
+				avaldis = (Avaldis) new KomagaLiteraal((double) väärtus);
+			} else if (väärtus instanceof String) {
+				avaldis = (Avaldis) new SõneLiteraal((String) väärtus);
+			} else if (väärtus instanceof Boolean) {
+				avaldis = (Avaldis) new TõeväärtusLiteraal((boolean) väärtus);
+			} else if (väärtus instanceof ArrayList) {
+				avaldis = (Avaldis) new Hulk((ArrayList) väärtus);
+			} else {
+				throw new Exception("Evaluator.jooksuta Ülekirjutamine. Avaldis ei väärtustunud. Klass on " + väärtus.getClass().getName());
+			}
+			hulk.set(n, avaldis);
+			return null;
 		} else if (node instanceof Programm) {
 			System.out.println("Evaluator.jooksuta - Programm");
 			// Täidame rekursiivselt kõik lausete jadad

@@ -68,8 +68,10 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 			return new Omistamine(muutujaNimi, avaldis);
 		} else {
-			//TODO: tagasta mingi AST tipp, kust saab välja lugeda, mida peab üle kirjutama
-			return null;
+			Avaldis ülekirjutatav = (Avaldis) this.visit(ctx.tehe1());
+			Avaldis uusVäärtus = (Avaldis)this.visitAvaldis(ctx.avaldis());
+
+			return new Ülekirjutamine(ülekirjutatav, uusVäärtus);
 		}
 	}
 

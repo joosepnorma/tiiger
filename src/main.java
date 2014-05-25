@@ -7,7 +7,9 @@ import java.util.HashMap;
 
 public class main {
     public static void main(String[] args) {
-        String input = "lausu(\"a\"==\"a\")";
+        String input = "a=(1, 2, 3)\n" +
+		        "a[0] = 7\n" +
+		        "lausu(a[0])";
         AstNode tree = ASTCreator.createAST(input);
 	    Evaluator e = new Evaluator();
 	    try {
