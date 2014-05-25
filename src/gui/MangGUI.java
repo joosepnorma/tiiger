@@ -123,7 +123,6 @@ public class MangGUI extends JPanel {
 		int[] saveFile;
 		public void setLevel(int newLevel){
 			level = newLevel;
-			System.out.println("mang level: " + level);
 			if (level == saveFile.length || saveFile[level] == 0) {
 				nextButton.setEnabled(false);
 			} else {
@@ -139,7 +138,6 @@ public class MangGUI extends JPanel {
 			ActionListener listener = new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent ae) {
-					System.out.println("selectionlistener:" +ae.getActionCommand());
 					if (ae.getActionCommand().equals("next")){
 						MainGUI.mangGUI.nextLevel();
 					} else if (ae.getActionCommand().equals("prev")){
@@ -159,7 +157,7 @@ public class MangGUI extends JPanel {
 			backButton = new JButton();
 			backButton.setText("Tagasi");
 
-			backButton.setActionCommand("m�ngi");
+			backButton.setActionCommand("mängi");
 			backButton.addActionListener((ActionListener) MainGUI.navlistener);
 
 			nextButton = new JButton();

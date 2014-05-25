@@ -54,11 +54,9 @@ public class GUIUtils {
 	public static BufferedImage loadProblemPic(String levelNr) {
 		BufferedImage problemPic;
 		try {
-			System.out.println("res/level"+levelNr+".png");
 			problemPic = ImageIO.read(new File("tutorial/ylesanded/lvl"+levelNr+".png"));
 			return problemPic;
 		} catch (IOException e) {
-			System.out.println("res/lvl"+levelNr+".png");
 			e.printStackTrace();
 			return null;
 		}

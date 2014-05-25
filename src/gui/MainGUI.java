@@ -3,6 +3,8 @@ package gui;
 import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,11 +12,13 @@ import javax.swing.JPanel;
 
 public class MainGUI {
 	public static NavigationListener navlistener = new NavigationListener();
+	public static ExecutorService exec = Executors.newFixedThreadPool(5);
 	private static JFrame frame;
 	public static HarjutusGUI harjutusGUI;
 	public static MangGUI mangGUI;
 	public static ValikGUI valikGUI;
 	private static JPanel cards;
+
 	
 	
 	private static void createAndShowGUI() {
@@ -49,13 +53,18 @@ public class MainGUI {
 		frame.dispose();
 	}
 	public static void main(String[] args) {
-
+		
 		// Schedule a job for the event-dispatching thread:
 		// creating and showing this application's GUI.
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+		exec.submit(new Runnable() {
 			public void run() {
 				createAndShowGUI();
 			}
 		});
+		/*javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				createAndShowGUI();
+			}
+		});*/
 	}
 }
