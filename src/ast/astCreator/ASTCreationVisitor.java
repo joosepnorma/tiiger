@@ -91,7 +91,9 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 		if (ctx.lauseteJada() != null) {
 			sisu = (LauseteJada)this.visitLauseteJada(ctx.lauseteJada());
 		} else if (ctx.lause() != null) {
-			sisu = (LauseteJada)this.visitLause(ctx.lause());
+			List<Lause> laused = new ArrayList<>();
+			laused.add((Lause) this.visitLause(ctx.lause()));
+			sisu = new LauseteJada(laused);
 		}
 
 		return new KuniLause(tingimus, sisu);
@@ -105,7 +107,9 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 		if (ctx.lauseteJada() != null) {
 			sisu = (LauseteJada)this.visitLauseteJada(ctx.lauseteJada());
 		} else if (ctx.lause() != null) {
-			sisu = (LauseteJada)this.visitLause(ctx.lause());
+			List<Lause> laused = new ArrayList<>();
+			laused.add((Lause) this.visitLause(ctx.lause()));
+			sisu = new LauseteJada(laused);
 		}
 
 		return new KuiLause(tingimus, sisu);

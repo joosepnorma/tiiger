@@ -50,6 +50,7 @@ public class Evaluator {
 			while ((boolean) (eval(((KuniLause) node).getTingimus(), väärtused)) && tagastus == null) {
 				tagastus = jooksuta(((KuniLause) node).getSisu(), väärtused);
 			}
+			if (tagastus != null) return tagastus;
 		}  else if (node instanceof LauseteJada) {
 			System.out.println("Evaluator.jooksuta - LauseteJada");
 			// Täidame kõik laused rekursiivselt
@@ -76,7 +77,7 @@ public class Evaluator {
 			} else if (väärtus instanceof ArrayList) {
 				avaldis = (Avaldis) new Hulk((ArrayList) väärtus);
 			} else {
-				System.out.println("Evaluator.jooksuta Omistamine. Avaldis ei väärtustunud. Klass on " + väärtus.getClass().getName());
+				throw new Exception("Evaluator.jooksuta Omistamine. Avaldis ei väärtustunud. Klass on " + väärtus.getClass().getName());
 			}
 			väärtused.put(((Omistamine) node).getMuutujaNimi(), avaldis);
 			return null;
@@ -84,9 +85,8 @@ public class Evaluator {
 			System.out.println("Evaluator.jooksuta - Programm");
 			// Täidame rekursiivselt kõik lausete jadad
 			List<Object> lauseteJadad = node.getChildren();
-			Object tagastus = null;
 			for (Object lauseteJada : lauseteJadad) {
-				tagastus = jooksuta((LauseteJada)lauseteJada, väärtused);
+				jooksuta((LauseteJada)lauseteJada, väärtused);
 			}
 			return 1;
 		}

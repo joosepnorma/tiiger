@@ -18,10 +18,10 @@ lause
     ;
 
 kuiLause
-    :   'kui' '(' lausearvutus ')' ':' '\n' lauseteJada '\n'?
-    |   'kui' '(' lausearvutus ')' ':' lause
-    |   'kui' lausearvutus ':' '\n' lauseteJada '\n'?
-    |   'kui' lausearvutus ':' lause
+    :   'kui' '(' avaldis ')' ':' '\n' lauseteJada '\n'?
+    |   'kui' '(' avaldis ')' ':' lause
+    |   'kui' avaldis ':' '\n' lauseteJada '\n'?
+    |   'kui' avaldis ':' lause
     ;
 
 kuniLause
