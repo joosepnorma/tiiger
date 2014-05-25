@@ -135,7 +135,13 @@ public class Evaluator {
 			case "lausu":
 				Object oLause = eval(fun.getParameetrid().get(0), väärtused);
 				String lause;
-				if (!(oLause instanceof String)) {
+				if (oLause instanceof Boolean) {
+					if ((boolean) oLause) {
+						lause = "jah";
+					} else {
+						lause = "ei";
+					}
+				} else if (!(oLause instanceof String)) {
 					try {
 						lause = String.valueOf(oLause);
 					} catch (Exception e) {
@@ -372,9 +378,9 @@ public class Evaluator {
 			case ">=":
 				return tegurid.get(0) >= tegurid.get(1);
 			case "==":
-				return tegurid.get(0) == tegurid.get(1);
+				return tegurid.get(0).equals(tegurid.get(1));
 			case "!=":
-				return tegurid.get(0) != tegurid.get(1);
+				return !tegurid.get(0).equals(tegurid.get(1));
 		}
 		System.out.println("Evaluator.võrdleDouble vale võrdlustehe: " + võrdlus);
 		return null;

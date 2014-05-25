@@ -7,9 +7,7 @@ import java.util.HashMap;
 
 public class main {
     public static void main(String[] args) {
-        String input = "a=1.09\n" +
-		        "b=\" tiigrit\"\n" +
-		        "lausu(a+b+\" läks loomaaeda\")";
+        String input = "lausu(7.1!=7.1)";
         AstNode tree = ASTCreator.createAST(input);
 	    Evaluator e = new Evaluator();
 	    try {
@@ -19,7 +17,9 @@ public class main {
 	    }
 	    System.out.println("Väljund: ");
 	    System.out.println(e.getOutput());
-
+	    Object a= 2;
+	    Object b = 3.0;
+	    System.out.println(a.getClass().equals(b.getClass()));
     }
 
 }
