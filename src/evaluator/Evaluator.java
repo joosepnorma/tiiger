@@ -162,11 +162,30 @@ public class Evaluator {
 				lausu(lause);
 				return null;
 			case "loenda":
-				break;
+				if (fun.getParameetrid().size()!=1) {
+					throw new Exception("Funktsioon loenda tahab ühte sisendit. " +
+							"Sina andsid: " + fun.getParameetrid().size());
+				}
+				Object hulk = eval(fun.getParameetrid().get(0), väärtused);
+				if (hulk instanceof List) {
+					return ((List) hulk).size();
+				}
+				throw new Exception("Funktsioon loenda tahab sisendiks hulka. Sina andsid " + hulk.getClass().getName());
 			case "otsi":
-				break;
-			case "ründa":
-				break;
+				if (fun.getParameetrid().size()!=2) {
+					throw new Exception("Funktsioon otsi tahab kahte " +
+							"sisendit. Sina andsid: " + fun.getParameetrid().size());
+				}
+				List<Avaldis> parameetrid = fun.getParameetrid();
+				return otsi(parameetrid.get(0), parameetrid.get(1), väärtused);
+			case "kakle":
+				if (fun.getParameetrid().size()!=1) {
+					throw new Exception("Funktsioon lausu tahab ühte sisendit. " +
+							"Sina andsid: " + fun.getParameetrid().size());
+				}
+				Object objekt = eval(fun.getParameetrid().get(0), väärtused);
+				lausu("Kasutaja ründas objekti " + (String) objekt + "!");
+				return null;
 			case "tagasi":
 				if (fun.getParameetrid().size() != 1) throw new Exception("Argumentide arv vale");
 				return eval(fun.getParameetrid().get(0), väärtused);
@@ -178,7 +197,10 @@ public class Evaluator {
 			// lisame ta vastavalt mappi
 			List<String> params = funktsioonid.get(fNimi).getParameetrid();
 			List<Avaldis> paramValues = fun.getParameetrid();
-			if (params.size() != paramValues.size()) throw new Exception();
+			if (params.size() != paramValues.size()) {
+				throw new Exception("Funktsioonile " + fNimi + " anti vale arv parameetreid. " +
+						"Peaks olema " + params.size() + " aga on " + paramValues.size());
+			}
 			for (int i=0; i<params.size(); i++) {
 				väärtused.put(params.get(i), paramValues.get(i));
 			}
@@ -312,10 +334,26 @@ public class Evaluator {
 		throw new Exception("Funktsiooni ei ole defineeritud");
 	}
 
-	public void lausu(String s) {
+	private void lausu(String s) {
 		System.out.println("Evaluator.lausu " + s);
 		output.append(s);
 		output.append("\n");
+	}
+
+	private Object otsi(Object hulkAvaldis, Object elementAvaldis, Map<String, Avaldis> väärtused) throws Exception {
+		System.out.println("Evaluator.otsi");
+		Object oHulk = eval((Avaldis) hulkAvaldis, väärtused);
+		Object element = eval((Avaldis) elementAvaldis, väärtused);
+		if (!(oHulk instanceof List)) {
+			throw new Exception("Funktsiooni otsi esimene parameeter peab olema hulk, aga oli " + oHulk.getClass().getName());
+		}
+		System.out.println("Hulk: " + oHulk + ", element: " + element);
+		List<Avaldis> hulk = (List) oHulk;
+		for (int i=0; i<hulk.size(); i++) {
+			Object hulgaElement = eval(hulk.get(i), väärtused);
+			if (hulgaElement.equals(element)) return true;
+		}
+		return false;
 	}
 
 	private Integer arvutaInteger(String tehe, List<Integer> tegurid) {
