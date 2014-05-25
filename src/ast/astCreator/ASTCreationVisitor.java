@@ -6,7 +6,6 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import parser.TiigrikeelBaseVisitor;
 import parser.TiigrikeelParser;
 
-import java.rmi.UnexpectedException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitSõneR(@NotNull TiigrikeelParser.SõneRContext ctx) {
-		return new SõneLiteraal(ctx.getText());
+		return new SõneLiteraal(ctx.getText().substring(1, ctx.getText().length()-1));
 	}
 
 	@Override
@@ -199,7 +198,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitUnaarneMiinus(@NotNull TiigrikeelParser.UnaarneMiinusContext ctx) {
-		String funktsiooniNimi = "-";
+		String funktsiooniNimi = ctx.getChild(0).getText();
 
 		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
 		parameetrid.add((Avaldis)this.visit(ctx.tehe2()));
@@ -220,7 +219,7 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitLiitmineLahutamine(@NotNull TiigrikeelParser.LiitmineLahutamineContext ctx) {
-		String funktsiooniNimi = ctx.getChild(0).getText();
+		String funktsiooniNimi = ctx.getChild(1).getText();
 
 		List<Avaldis> parameetrid = new ArrayList<Avaldis>();
 		parameetrid.add((Avaldis)this.visit(ctx.tehe4()));
