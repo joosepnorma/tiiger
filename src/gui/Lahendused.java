@@ -44,7 +44,7 @@ public class Lahendused {
 			}
 		}
 		if (lvl == 4) {
-			if (output.startsWith("(") && output.endsWith(")")) {
+			if (tree.contains("Hulk")) {
 				return true;
 			}
 
@@ -67,7 +67,9 @@ public class Lahendused {
 
 		}
 		if (lvl == 8) {
-			if (tree.contains("Omistamine") && tree.contains("jäätis") && tree.contains("17") && tree. contains("Hulk(SõneLiteraal")){
+			if (tree.contains("Omistamine") && tree.contains("jäätis") &&
+					tree.contains("17") && tree.contains("Hulk(SõneLiteraal") &&
+					tree.indexOf("Omistamine")!=tree.lastIndexOf("Omistamine")){
 				return true;
 			}
 
