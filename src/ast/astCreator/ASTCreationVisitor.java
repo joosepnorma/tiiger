@@ -62,10 +62,15 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 
 	@Override
 	public AstNode visitOmistamine(@NotNull TiigrikeelParser.OmistamineContext ctx) {
-		String muutujaNimi = ctx.MuutujaNimi().getText();
-		Avaldis avaldis = (Avaldis)this.visitAvaldis(ctx.avaldis());
+		if (ctx.MuutujaNimi() != null) {
+			String muutujaNimi = ctx.MuutujaNimi().getText();
+			Avaldis avaldis = (Avaldis)this.visitAvaldis(ctx.avaldis());
 
-		return new Omistamine(muutujaNimi, avaldis);
+			return new Omistamine(muutujaNimi, avaldis);
+		} else {
+			//TODO: tagasta mingi AST tipp, kust saab välja lugeda, mida peab üle kirjutama
+			return null;
+		}
 	}
 
 	@Override
