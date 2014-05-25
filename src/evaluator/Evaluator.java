@@ -243,8 +243,6 @@ public class Evaluator {
 			// Binaarsed operatsioonid
 			Object a = eval(fun.getParameetrid().get(0), väärtused);
 			Object b = eval(fun.getParameetrid().get(1), väärtused);
-			String aKlass = a.getClass().getName();
-			String bKlass = b.getClass().getName();
 			System.out.println("Tüübikontroll");
 			// Kontrollime tüüpi
 			if (a instanceof Integer && b instanceof Integer) {
@@ -272,7 +270,7 @@ public class Evaluator {
 				List<Boolean> tegurid = new ArrayList<>();
 				tegurid.add((boolean) a);
 				tegurid.add((boolean) b);
-				if (lauseArvutusOperatsioonid.contains(fNimi)) {
+				if (lauseArvutusOperatsioonid.contains(fNimi) || fNimi.equals("==") || fNimi.equals("!=")) {
 					return arvutaBoolean(fNimi, tegurid);
 				}
 				// Siia ei tohiks jõuda
@@ -441,7 +439,7 @@ public class Evaluator {
 		throw new Exception("Sõned ei toeta tehet " + tehe);
 	}
 
-	private boolean arvutaBoolean(String tehe, List<Boolean> tegurid) {
+	private boolean arvutaBoolean(String tehe, List<Boolean> tegurid) throws Exception {
 		switch (tehe) {
 			case "||":
 				return tegurid.get(0) || tegurid.get(1);
@@ -449,9 +447,12 @@ public class Evaluator {
 				return tegurid.get(0) && tegurid.get(1);
 			case "!":
 				return !tegurid.get(0);
+			case "==":
+				return tegurid.get(0).equals(tegurid.get(1));
+			case "!=":
+				return !tegurid.get(0).equals(tegurid.get(1));
 		}
-		System.out.println("Evaluator.arvutaBoolean vale tehe: " + tehe);
-		return false;
+		throw new Exception("Evaluator.arvutaBoolean vale tehe: " + tehe);
 	}
 
 	private Avaldis võtaHulgaElement(Avaldis hulk, int n) throws Exception {

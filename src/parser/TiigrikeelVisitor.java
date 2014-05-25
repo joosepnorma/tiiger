@@ -72,6 +72,12 @@ public interface TiigrikeelVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitKorrutamineJagamine(@NotNull TiigrikeelParser.KorrutamineJagamineContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TiigrikeelParser#TõeväärtusR1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTõeväärtusR1(@NotNull TiigrikeelParser.TõeväärtusR1Context ctx);
+	/**
 	 * Visit a parse tree produced by {@link TiigrikeelParser#kuniLause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

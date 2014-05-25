@@ -7,8 +7,8 @@ import java.util.HashMap;
 
 public class main {
     public static void main(String[] args) {
-        String input = "riiul=(\"piim\", \"vorst\")\n" +
-		        "lausu(otsi(riiul, \"piim\"))";
+        String input = "a=jah\n" +
+		        "kui (a==jah): lausu(\"jess\")";
         AstNode tree = ASTCreator.createAST(input);
 	    Evaluator e = new Evaluator();
 	    try {

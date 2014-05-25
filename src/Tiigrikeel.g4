@@ -33,6 +33,7 @@ kuniLause
 
 omistamine
     :   MuutujaNimi '=' avaldis
+    |   tehe1 '=' avaldis
     ;
 
 uusFunktsioon
@@ -72,7 +73,7 @@ tehe1
     ;
 
 tehe0
-    :   Tõeväärtus                                          #TõeväärtusR2
+    :   Tõeväärtus                                          #TõeväärtusR1
     |   MuutujaNimi                                         #MuutujaNimiR
     |   Täisarv                                             #TäisarvR
     |   Komaga                                              #KomagaR
@@ -96,7 +97,7 @@ lausearvutus3
 lausearvutus2
     :   '!' lausearvutus2                                   #Eitus
     |   '(' lausearvutus ')'                                #SulustatudLausearvutus
-//    |   Tõeväärtus                                          #TõeväärtusR
+    |   Tõeväärtus                                          #TõeväärtusR
     |   lausearvutus1                                       #TriviaalneLausearvutus1
     ;
 
