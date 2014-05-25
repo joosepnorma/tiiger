@@ -91,6 +91,10 @@ public class MangGUI extends JPanel {
 		update();
 		
 	}
+	
+	public void enableNext(){
+		buttonPane.activateNextButton();
+	}
 
 	private class ImagePanel extends JPanel {
 
@@ -123,7 +127,8 @@ public class MangGUI extends JPanel {
 		int[] saveFile;
 		public void setLevel(int newLevel){
 			level = newLevel;
-			if (level == saveFile.length || saveFile[level] == 0) {
+			runButton.setActionCommand(String.valueOf(level));
+			if (level == saveFile.length || saveFile[level+1] == 0) {
 				nextButton.setEnabled(false);
 			} else {
 				nextButton.setEnabled(true);
@@ -133,6 +138,9 @@ public class MangGUI extends JPanel {
 			} else {
 				prevButton.setEnabled(true);
 			}
+		}
+		public void activateNextButton(){
+			nextButton.setEnabled(true);
 		}
 		MangButtons(JTextPane inputTextPane, JTextPane outputTextPane, int level) {
 			ActionListener listener = new ActionListener(){

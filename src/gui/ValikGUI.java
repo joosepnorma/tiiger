@@ -70,5 +70,9 @@ public class ValikGUI extends JPanel {
 		
 
 	}
+	public void refresh(){
+		this.removeAll();
+		addComponentsToPane(this);
+	}
 	
 }
