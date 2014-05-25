@@ -47,7 +47,7 @@ public class Evaluator {
 				throw new Exception("Kuni lause tingimus ei väärtustunud tõeväärtuseks!");
 			}
 			Object tagastus = null;
-			while ((boolean)tingimus && tagastus == null) {
+			while ((boolean) (eval(((KuniLause) node).getTingimus(), väärtused)) && tagastus == null) {
 				tagastus = jooksuta(((KuniLause) node).getSisu(), väärtused);
 			}
 		}  else if (node instanceof LauseteJada) {
