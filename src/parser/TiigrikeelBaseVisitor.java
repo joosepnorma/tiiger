@@ -88,6 +88,13 @@ public class TiigrikeelBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitTõeväärtusR1(@NotNull TiigrikeelParser.TõeväärtusR1Context ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitKuniLause(@NotNull TiigrikeelParser.KuniLauseContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

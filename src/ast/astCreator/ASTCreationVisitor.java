@@ -49,6 +49,18 @@ public class ASTCreationVisitor extends TiigrikeelBaseVisitor<AstNode> {
 	}
 
 	@Override
+	public AstNode visitTõeväärtusR1(@NotNull TiigrikeelParser.TõeväärtusR1Context ctx) {
+		TõeväärtusLiteraal väärtus;
+		if (ctx.getText().equals("jah")) {
+			väärtus = new TõeväärtusLiteraal(true);
+		} else {
+			väärtus = new TõeväärtusLiteraal(false);
+		}
+
+		return väärtus;
+	}
+
+	@Override
 	public AstNode visitOmistamine(@NotNull TiigrikeelParser.OmistamineContext ctx) {
 		String muutujaNimi = ctx.MuutujaNimi().getText();
 		Avaldis avaldis = (Avaldis)this.visitAvaldis(ctx.avaldis());

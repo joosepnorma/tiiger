@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class main {
     public static void main(String[] args) {
-        String input = "a=jah\nkui(!a): lausu(\"midagi\")";
+        String input = "lausu(\"a\"==\"a\")";
         AstNode tree = ASTCreator.createAST(input);
 	    Evaluator e = new Evaluator();
 	    try {
