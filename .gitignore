@@ -1,1 +1,4 @@
 /bin/
+*.xml
+src/.idea/.name
+src/.idea/src.iml
