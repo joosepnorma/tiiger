@@ -12,4 +12,5 @@ Parv=("Leesi", "Leedi", "Lontu", "Londu")\n
 TASE 14
 Heinakuhi=("hein", "muru", "rohi")\n
 
-TASE 15
+TASE 19
+Mets=("Koll1", "Koll2", "Koll3", "Koll4", "Koll7")\n
