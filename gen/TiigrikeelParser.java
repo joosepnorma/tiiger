@@ -690,19 +690,19 @@ public class TiigrikeelParser extends Parser {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(171); lausearvutus();
+				setState(171); hulk();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(172); tehe();
+				setState(172); lausearvutus();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(173); hulk();
+				setState(173); tehe();
 				}
 				break;
 			}
@@ -2084,9 +2084,9 @@ public class TiigrikeelParser extends Parser {
 		"\u00a5\3\2\2\2\u00a3\u00a1\3\2\2\2\u00a3\u00a4\3\2\2\2\u00a4\u00a7\3\2"+
 		"\2\2\u00a5\u00a3\3\2\2\2\u00a6\u009e\3\2\2\2\u00a6\u00a7\3\2\2\2\u00a7"+
 		"\u00a8\3\2\2\2\u00a8\u00a9\7\21\2\2\u00a9\u00aa\7\n\2\2\u00aa\u00ab\7"+
-		"\4\2\2\u00ab\u00ac\5\4\3\2\u00ac\17\3\2\2\2\u00ad\u00b1\5\36\20\2\u00ae"+
-		"\u00b1\5\22\n\2\u00af\u00b1\5*\26\2\u00b0\u00ad\3\2\2\2\u00b0\u00ae\3"+
-		"\2\2\2\u00b0\u00af\3\2\2\2\u00b1\21\3\2\2\2\u00b2\u00b3\5\24\13\2\u00b3"+
+		"\4\2\2\u00ab\u00ac\5\4\3\2\u00ac\17\3\2\2\2\u00ad\u00b1\5*\26\2\u00ae"+
+		"\u00b1\5\36\20\2\u00af\u00b1\5\22\n\2\u00b0\u00ad\3\2\2\2\u00b0\u00ae"+
+		"\3\2\2\2\u00b0\u00af\3\2\2\2\u00b1\21\3\2\2\2\u00b2\u00b3\5\24\13\2\u00b3"+
 		"\23\3\2\2\2\u00b4\u00b5\b\13\1\2\u00b5\u00b6\5\26\f\2\u00b6\u00bc\3\2"+
 		"\2\2\u00b7\u00b8\f\4\2\2\u00b8\u00b9\t\2\2\2\u00b9\u00bb\5\26\f\2\u00ba"+
 		"\u00b7\3\2\2\2\u00bb\u00be\3\2\2\2\u00bc\u00ba\3\2\2\2\u00bc\u00bd\3\2"+

@@ -40,9 +40,9 @@ uusFunktsioon
     ;
 
 avaldis
-    :   lausearvutus
+    :   hulk
+    |   lausearvutus
     |   tehe
-    |   hulk
     ;
 
 tehe
