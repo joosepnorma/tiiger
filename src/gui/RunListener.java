@@ -76,7 +76,9 @@ class YlEvalThread extends Thread {
 		try {
 			e.jooksuta(tree, new HashMap<String, Avaldis>());
 			output.setText(e.getOutput());
-			lahendused.setEvaluator(e);
+			lahendused.setOutput(e.getOutput());
+			lahendused.setInput(input.getText());
+			lahendused.setTree(tree.toString());
 			if (lahendused.isSolved(lvl)) {
 				save[lvl] = 2;
 				if (save[lvl + 1] == 0) {
