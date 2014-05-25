@@ -37,12 +37,12 @@ public class Evaluator {
 				throw new Exception("Kui lause tingimus ei väärtustunud tõeväärtuseks!");
 			}
 			if ((boolean)tingimus) {
-				return jooksuta(((KuniLause) node).getSisu(), väärtused);
+				return jooksuta(((KuiLause) node).getSisu(), väärtused);
 			}
 		} else if (node instanceof KuniLause) {
 			System.out.println("Evaluator.jooksuta - KuniLause");
 			// Kontrolli, kas on ikka boolean enne
-			Object tingimus = eval(((KuiLause) node).getTingimus(), väärtused);
+			Object tingimus = eval(((KuniLause) node).getTingimus(), väärtused);
 			if (!(tingimus instanceof Boolean)) {
 				throw new Exception("Kuni lause tingimus ei väärtustunud tõeväärtuseks!");
 			}
@@ -73,6 +73,8 @@ public class Evaluator {
 				avaldis = (Avaldis) new SõneLiteraal((String) väärtus);
 			} else if (väärtus instanceof Boolean) {
 				avaldis = (Avaldis) new TõeväärtusLiteraal((boolean) väärtus);
+			} else if (väärtus instanceof ArrayList) {
+				avaldis = (Avaldis) new Hulk((ArrayList) väärtus);
 			} else {
 				System.out.println("Evaluator.jooksuta Omistamine. Avaldis ei väärtustunud. Klass on " + väärtus.getClass().getName());
 			}
@@ -105,8 +107,8 @@ public class Evaluator {
 			System.out.println("Evaluator.eval - Funktsioon");
 			return täidaFunktsioon((Funktsioon)node, new HashMap<String, Avaldis>(väärtused));
 		} else if (node instanceof Hulk) {
-			System.out.println("Evaluator.eval - Hulk?!");
-			// Ei tea veel
+			System.out.println("Evaluator.eval - Hulk");
+			return ((Hulk) node).getElemendid();
 		}
 		System.out.println("Evaluator.eval - ei püütud midagi");
 		System.out.println("Node klass: " + node.getClass().getName());
@@ -133,6 +135,9 @@ public class Evaluator {
 		// Kontrollime, kas fNimi on mõni meie funktsioonidest
 		switch (fNimi) {
 			case "lausu":
+				if (fun.getParameetrid().size()!=1) {
+					throw new Exception("Funktsioon lausu tahab ühte sisendit. Sina andsid: " + fun.getParameetrid().size());
+				}
 				Object oLause = eval(fun.getParameetrid().get(0), väärtused);
 				String lause;
 				if (oLause instanceof Boolean) {
@@ -386,13 +391,12 @@ public class Evaluator {
 		return null;
 	}
 
-	private String arvutaString(String tehe, List<String> tegurid) {
+	private String arvutaString(String tehe, List<String> tegurid) throws Exception {
 		switch (tehe) {
 			case "+":
 				return tegurid.get(0) + tegurid.get(1);
 		}
-		System.out.println("Evaluator.arvutaString vale tehe: " + tehe);
-		return null;
+		throw new Exception("Sõned ei toeta tehet " + tehe);
 	}
 
 	private boolean arvutaBoolean(String tehe, List<Boolean> tegurid) {

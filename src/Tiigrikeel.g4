@@ -1,7 +1,7 @@
 grammar Tiigrikeel;
 
 programm
-    :   lauseteJada ('\n'+ lauseteJada)* '\n'*
+    :   '\n'* lauseteJada ('\n'+ lauseteJada)* '\n'*
     ;
 
 lauseteJada
