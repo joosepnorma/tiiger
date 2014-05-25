@@ -48,5 +48,24 @@ uuri(): "Draakonite nimed on Metslane ja Nipitiri"
 
 TASE 12
 väljund: ründa(jahu)
-uuri(): "Siin köögis on kaks hulka, riiul ja kapp. Otsida saab nii: x=otsi(riiul, muna) \n lausu(x) ning saad teada, kas riiulis leidub muna"
+uuri(): "Siin köögis on kaks hulka, riiul ja kapp. Otsida saab nii: x=otsi(riiul, "muna") \n lausu(x) ning saad teada, kas riiulis leidub muna"
+
+TASE 13
+väljund: 
+uuri(): Elevandihulga nimi on Parv. Loendamiseks saad kasutada funktsiooni loenda(), Lontu otsimiseks aga funktsiooni Otsi(). PS: Lontu peab esinema sõnena!"
+
+TASE 14
+
+TASE 15
+
+TASE 16
+
+TASE 17
+
+TASE 18
+
+TASE 19
+
+TASE 20
+
 
