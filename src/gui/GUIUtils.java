@@ -2,9 +2,12 @@ package gui;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOError;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -49,6 +52,22 @@ public class GUIUtils {
 			intArray[i] = Integer.parseInt(String.valueOf(line.charAt(i)));
 		}
 		return intArray;
+	}
+	public static void writeSaveFile(int[] intArray){
+		File saveFile = loadSaveFile();
+		try {
+			saveFile.delete();
+			saveFile.createNewFile();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile));
+			for (int i:intArray){
+				writer.append(Integer.toString(i));				
+			}
+			writer.close();
+			System.out.println("savefile updated");
+			
+		} catch (IOException e){
+			e.printStackTrace();
+		}
 	}
 
 	public static BufferedImage loadProblemPic(String levelNr) {

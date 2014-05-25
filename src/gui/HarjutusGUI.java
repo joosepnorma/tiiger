@@ -65,6 +65,7 @@ class ButtonPane extends JPanel {
 
 		runButton = new JButton();
 		runButton.setText("Jooksuta");
+		runButton.setActionCommand("harjuta");
 		runButton.addActionListener(new RunListener(inputTextPane, outputTextPane));
 		backButton = new JButton();
 		backButton.setText("Tagasi");
