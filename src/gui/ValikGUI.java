@@ -1,8 +1,10 @@
+package gui;
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Box;
@@ -14,7 +16,6 @@ import javax.swing.SwingConstants;
 
 
 public class ValikGUI extends JPanel {
-	public static SelectionListener selectionListener = new SelectionListener();
     
 	public void addComponentsToPane(final Container pane) {
     	final JPanel compsToExperiment = new JPanel();
@@ -27,16 +28,24 @@ public class ValikGUI extends JPanel {
         
         ((GridLayout)compsToExperiment.getLayout()).setHgap(20);
         ((GridLayout)compsToExperiment.getLayout()).setVgap(30);
-        
-        for (int i = 1;i<22;i++){
-        	JButton temp = new JButton("level " + i);
-        	if(i>10){
+        int[] save = GUIUtils.readSaveFile();
+        for (int i = 0;i<21;i++){
+        	JButton temp = new JButton("level " + (i));
+        	if(save[i]==0){
         		temp.setBackground(Color.DARK_GRAY);
         		temp.setEnabled(false);
-
+        	} else if (save[i]==2) {
+        		temp.setBackground(Color.GREEN);
         	}
-    		temp.setActionCommand("level " + i);
-    		temp.addActionListener((ActionListener)selectionListener);
+    		temp.setActionCommand(Integer.toString(i));
+    		temp.addActionListener(new ActionListener(){
+    			@Override
+    			public void actionPerformed(ActionEvent ae) {
+    				MainGUI.mangGUI.setLevel(Integer.parseInt(ae.getActionCommand()));
+    				MainGUI.replace("mang");
+
+    			}
+    		});
             compsToExperiment.add(temp);
         }
         

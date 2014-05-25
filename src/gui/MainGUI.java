@@ -1,3 +1,5 @@
+package gui;
+
 import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -47,6 +49,7 @@ public class MainGUI {
 		frame.dispose();
 	}
 	public static void main(String[] args) {
+
 		// Schedule a job for the event-dispatching thread:
 		// creating and showing this application's GUI.
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {

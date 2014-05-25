@@ -1,3 +1,5 @@
+package gui;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -35,14 +37,14 @@ public class MainPanel extends JPanel {
 		
 		JButton mangi = new JButton();
 		mangi.setPreferredSize(new Dimension(200,100));
-		mangi.setText("M‰ngi");
+		mangi.setText("M√§ngi");
 		mangi.setFont(newButtonFont);
-		mangi.setActionCommand("m‰ngi");
+		mangi.setActionCommand("m√§ngi");
 		mangi.addActionListener((ActionListener)MainGUI.navlistener);
 				
 		JButton valju = new JButton();
 		valju.setPreferredSize(new Dimension(200,100));
-		valju.setText("V‰lju");
+		valju.setText("V√§lju");
 		valju.setFont(newButtonFont);
 		valju.setActionCommand("valju");
 		valju.addActionListener((ActionListener)MainGUI.navlistener);
