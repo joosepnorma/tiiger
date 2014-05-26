@@ -15,10 +15,9 @@ class RunListener implements ActionListener {
 
 	JTextPane inputTextPane;
 	JTextPane outputTextPane;
-	Executor exec;
 	int lvl;
 	LevelAbi abi = new LevelAbi();
-
+	Thread jookse;
 	public RunListener(JTextPane inputTextPane, JTextPane outputTextPane) {
 
 		this.inputTextPane = inputTextPane;
@@ -29,9 +28,11 @@ class RunListener implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		String input = inputTextPane.getText();
 		Evaluator e = new Evaluator();
-		if (ae.getActionCommand().equals("harjuta")) {
+		if (ae.getActionCommand().equals("peata")){
+			MainGUI.mangGUI.stopToRun();
+		} else if (ae.getActionCommand().equals("harjuta")) {
 			AstNode tree = ASTCreator.createAST(input);
-			EvalThread jookse = new EvalThread(tree, e, inputTextPane,
+			jookse = new EvalThread(tree, e, inputTextPane,
 					outputTextPane);
 			MainGUI.exec.submit(jookse);
 		} else {
@@ -43,7 +44,7 @@ class RunListener implements ActionListener {
 					|| inputTextPane.getText().startsWith("uuri()")) {
 				abi.uuri(outputTextPane, lvl);
 			} else {
-				YlEvalThread jookse = new YlEvalThread(tree, e, inputTextPane,
+				jookse = new YlEvalThread(tree, e, inputTextPane,
 						outputTextPane, lvl);
 				MainGUI.exec.submit(jookse);
 			}
@@ -76,27 +77,34 @@ class YlEvalThread extends Thread {
 
 	@Override
 	public void run() {
+
 		try {
-			e.jooksuta(tree, new HashMap<String, Avaldis>());
-			output.setText(e.getOutput());
-			lahendused.setOutput(e.getOutput());
-			lahendused.setInput(input.getText());
-			lahendused.setTree(tree.toString());
-			if (lahendused.isSolved(lvl)) {
-				save[lvl] = 2;
-				if (save[lvl + 1] == 0) {
-					save[lvl + 1] = 1;
+			while (!Thread.currentThread().isInterrupted()) {
+				MainGUI.mangGUI.runToStop();
+				e.jooksuta(tree, new HashMap<String, Avaldis>());
+				output.setText(e.getOutput());
+				lahendused.setOutput(e.getOutput());
+				lahendused.setInput(input.getText());
+				lahendused.setTree(tree.toString());
+				if (lahendused.isSolved(lvl)) {
+					output.setText(output.getText().concat("\n\nTubli!\nLahendasid ära!"));
+					save[lvl] = 2;
+					if (save[lvl + 1] == 0) {
+						save[lvl + 1] = 1;
+					}
+					GUIUtils.writeSaveFile(save);
+					MainGUI.mangGUI.enableNext();
+					MainGUI.valikGUI.refresh();
 				}
-				GUIUtils.writeSaveFile(save);
-				MainGUI.mangGUI.enableNext();
-				MainGUI.valikGUI.refresh();
+				if (!Thread.currentThread().isInterrupted()) {
+					Thread.currentThread().interrupt();
+					MainGUI.mangGUI.stopToRun();
+				}
 			}
-		} catch (InterruptedException e) {
-			// We've been interrupted: no more messages.
-			System.out.println("interrupted");
 		} catch (Exception e1) {
 			output.setText(e1.getMessage());
 			e1.printStackTrace();
+			MainGUI.mangGUI.stopToRun();
 		}
 
 	}
@@ -120,14 +128,19 @@ class EvalThread extends Thread {
 	@Override
 	public void run() {
 		try {
-			e.jooksuta(tree, new HashMap<String, Avaldis>());
-			output.setText(e.getOutput());
-		} catch (InterruptedException e) {
-			// We've been interrupted: no more messages.
-			System.out.println("interrupted");
+			while (!Thread.currentThread().isInterrupted()) {
+				MainGUI.mangGUI.runToStop();
+				e.jooksuta(tree, new HashMap<String, Avaldis>());
+				output.setText(e.getOutput());
+				if (!Thread.currentThread().isInterrupted()) {
+					Thread.currentThread().interrupt();
+					MainGUI.mangGUI.stopToRun();
+				}
+			}
 		} catch (Exception e1) {
 			output.setText(e1.getMessage());
 			e1.printStackTrace();
+			MainGUI.mangGUI.stopToRun();
 		}
 
 	}

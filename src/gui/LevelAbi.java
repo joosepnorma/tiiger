@@ -16,7 +16,16 @@ String[] abilaused = {"Kuule häkker, selles tasemes pole vaja midagi välja uur
 		"Jätkamiseks lausu sõne \"funktsioon\"",
 		"Et korvis leiduvate seente arvu loendada, kasuta funktsiooni loenda(Korv)",
 		"Draakonite nimed on Metslane ja Nipitiri, ründamisel kirjuta need sõnena!",
-		"Siin köögis on kaks hulka, riiul ja kapp. Otsida saab nii: x=otsi(riiul, muna) \n lausu(x) ning saad teada, kas riiulis leidub muna"};
+		"Siin köögis on kaks hulka, Riiul ja Kapp. Otsida saab nii: x=otsi(Riiul, \"muna\") \n lausu(x) ning saad teada, kas riiulis leidub muna",
+		"Elevandihulga nimi on Parv. Loendamiseks saad kasutada funktsiooni loenda(), Lontu otsimiseks aga funktsiooni otsi(). PS: Lontu peab esinema sõnena!",
+		"Sul läheb vaja funktsiooni otsi().",
+		"Tiigrikeel on kõige magusam.",
+		"Ekraanile peaks ilmuma vaid üks lause.",
+		"Siin võib abiks tulla 7. taseme meenutamine.",
+		"Proovi ise erinevaid kombinatsioone.",
+		"Hulga nimi on Mets ja kõigi kollide nimi on Mäger",
+		"Vaata ka https://programmeerimine.cs.ut.ee ja https://courses.cs.ut.ee/2014/AKT/"
+		};
 
 public void uuri(JTextPane output, int lvl){
 	output.setText(abilaused[lvl]);

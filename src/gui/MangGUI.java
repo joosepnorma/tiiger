@@ -78,6 +78,7 @@ public class MangGUI extends JPanel {
 		update();
 	}
 	public void update() {
+		outputTextPane.setText("");
 		problemPanel.setLevel(levelNr);
 		buttonPane.setLevel(levelNr);
 
@@ -94,6 +95,12 @@ public class MangGUI extends JPanel {
 	
 	public void enableNext(){
 		buttonPane.activateNextButton();
+	}
+	public void runToStop(){
+		buttonPane.runToStop();
+	}
+	public void stopToRun(){
+		buttonPane.stopToRun();
 	}
 
 	private class ImagePanel extends JPanel {
@@ -144,6 +151,17 @@ public class MangGUI extends JPanel {
 		}
 		public void activateNextButton(){
 			nextButton.setEnabled(true);
+			nextButton.setBackground(Color.green);
+		}
+		public void runToStop(){
+			runButton.setText("Peata");
+			runButton.setBackground(Color.red);
+			runButton.setActionCommand("peata");
+		}
+		public void stopToRun(){
+			runButton.setText("Jooksuta");
+			runButton.setBackground(Color.LIGHT_GRAY);
+			runButton.setActionCommand(String.valueOf(level));
 		}
 		MangButtons(JTextPane inputTextPane, JTextPane outputTextPane, int level) {
 			ActionListener listener = new ActionListener(){
