@@ -1,7 +1,5 @@
 package gui;
 
-import ast.AstNode;
-
 public class Lahendused {
 	String input;
 	String output;
@@ -95,6 +93,30 @@ public class Lahendused {
 
 		}
 		if (lvl == 14) {
+
+		}
+		if (lvl == 15) {
+
+		}
+		if (lvl == 16) {
+
+		}
+		if (lvl == 17) {
+
+		}
+		if (lvl == 18) {
+
+		}
+		if (lvl == 19) {
+
+		}
+		if (lvl == 20) {
+			if (tree.contains("FunktsiooniDeklaratsioon(") && tree.contains("LauseteJada(AvaldisLause(Funktsioon(" +
+					"\"lausu\", [Funktsioon(\"*\", [TäisarvLiteraal(5), SõneLiteraal(\"Appi\"")) {
+				return true;
+			}
+		}
+		if (lvl == 21) {
 
 		}
 		return false;
