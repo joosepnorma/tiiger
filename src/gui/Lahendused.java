@@ -135,7 +135,7 @@ public class Lahendused {
 			}
 		}
 		if (lvl == 19) {
-			if (output.equals("Appi\nAppi\nAppi\nAppi\nAppi")
+			if (output.contains("Appi\nAppi\nAppi\nAppi\nAppi")
 					|| (tree.contains("5") && tree.contains("lausu") && tree
 							.contains("Appi"))) {
 				return true;
